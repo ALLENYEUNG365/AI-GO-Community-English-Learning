@@ -18,7 +18,7 @@ export default function DailyCheckIn() {
 
     const checkTodayStatus = async () => {
       try {
-        const response = await fetch(`/api/checkin/status?email=${session.user.email}`);
+        const response = await fetch(`/api/checkin/status?email=${session?.user?.email}`);
         if (response.ok) {
           const data = await response.json();
           setHasCheckedIn(data.hasCheckedIn);
