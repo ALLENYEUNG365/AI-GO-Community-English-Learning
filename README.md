@@ -1,6 +1,33 @@
 # English Learning Circle
 
-A gamified social learning platform for English learners.
+An Open-Source AI-Enhanced English Learning Platform for Students, Educators, International Learners, and Lifelong Learners.
+English Learning Circle is an open-source educational platform designed to make English learning more accessible, engaging, and personalized through social learning, gamification, and AI-assisted educational technologies.
+The project combines social learning, gamification, and AI-powered educational tools to support:
+
+- Vocational education students
+- International learners
+- English teachers
+- Lifelong learners
+
+Our mission is to make high-quality language learning accessible to everyone through technology and open-source collaboration. The platform aims to foster collaborative learning communities while exploring responsible and ethical applications of artificial intelligence in education.
+## Educational Impact
+
+English Learning Circle is designed to support a diverse global learning community through accessible and technology-enhanced language education.
+
+### Target Communities
+
+* Vocational education students seeking practical English communication skills
+* International learners preparing for academic and professional opportunities
+* English teachers looking for collaborative learning resources
+* Lifelong learners pursuing continuous personal and professional development
+
+### Educational Goals
+
+* Improve access to quality English learning resources
+* Encourage collaborative and community-driven learning
+* Promote digital literacy and AI-assisted learning
+* Support inclusive and lifelong education
+* Explore responsible applications of artificial intelligence in education
 
 ## Features
 
@@ -13,9 +40,28 @@ A gamified social learning platform for English learners.
 - ✅ Dark/Light Theme
 - ✅ Responsive Design
 
+## AI Roadmap
+
+English Learning Circle is committed to exploring responsible and impactful applications of artificial intelligence in language education.
+
+### Planned AI Features
+
+* AI Grammar Correction and Writing Feedback
+* AI Vocabulary Coach and Personalized Learning Paths
+* AI Conversation Practice for English Learners
+* AI-generated Learning Exercises and Assessments
+* AI-powered Learning Recommendations
+* AI-assisted Teaching Resources for Educators
+* Learning Analytics and Progress Tracking
+* Multilingual Learning Support
+
+### Long-Term Vision
+
+Our goal is to build an open and accessible AI-enhanced learning ecosystem that supports students, educators, and lifelong learners around the world.
+
 ## Quick Start
 
-### 1. Install Dependencies
+### 1. Installation
 
 ```bash
 npm install
