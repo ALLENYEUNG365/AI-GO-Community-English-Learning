@@ -1,0 +1,17 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="1600" height="900" viewBox="0 0 1600 900">
+<defs><linearGradient id="g" x1="0" x2="1"><stop stop-color="#FFB300"/><stop offset="1" stop-color="#FF6D00"/></linearGradient><filter id="s"><feDropShadow dx="0" dy="10" stdDeviation="14" flood-opacity=".12"/></filter></defs>
+<rect width="1600" height="900" fill="#F8FAFC"/>
+<text x="100" y="100" font-family="Arial, sans-serif" font-size="46" font-weight="700" fill="#172033">AI GO Community English Learning</text>
+<text x="100" y="150" font-family="Arial, sans-serif" font-size="24" fill="#475569">Educational Learning Loop</text>
+<g filter="url(#s)">
+<rect x="120" y="220" rx="28" width="380" height="150" fill="white"/><rect x="610" y="220" rx="28" width="380" height="150" fill="white"/><rect x="1100" y="220" rx="28" width="380" height="150" fill="white"/>
+<rect x="1100" y="520" rx="28" width="380" height="150" fill="white"/><rect x="610" y="520" rx="28" width="380" height="150" fill="white"/><rect x="120" y="520" rx="28" width="380" height="150" fill="white"/></g>
+<g font-family="Arial, sans-serif" text-anchor="middle"><text x="310" y="275" font-size="26" font-weight="700" fill="#172033">1. LEARNER PROFILE</text><text x="310" y="320" font-size="20" fill="#64748B">Goals · level · interests</text>
+<text x="800" y="275" font-size="26" font-weight="700" fill="#172033">2. LEARNING HUB</text><text x="800" y="320" font-size="20" fill="#64748B">Lessons · resources</text>
+<text x="1290" y="275" font-size="26" font-weight="700" fill="#172033">3. PRACTICE</text><text x="1290" y="320" font-size="20" fill="#64748B">Chat · writing · speaking</text>
+<text x="1290" y="575" font-size="26" font-weight="700" fill="#172033">4. AI ASSISTANCE</text><text x="1290" y="620" font-size="20" fill="#64748B">Feedback · guidance · suggestions</text>
+<text x="800" y="575" font-size="26" font-weight="700" fill="#172033">5. COMMUNITY</text><text x="800" y="620" font-size="20" fill="#64748B">Share · discuss · encourage</text>
+<text x="310" y="575" font-size="26" font-weight="700" fill="#172033">6. MOTIVATION</text><text x="310" y="620" font-size="20" fill="#64748B">Streaks · points · rewards</text></g>
+<g stroke="url(#g)" stroke-width="10" fill="none" stroke-linecap="round" stroke-linejoin="round"><path d="M500 295H610"/><path d="M990 295H1100"/><path d="M1290 370V520"/><path d="M1100 595H990"/><path d="M610 595H500"/><path d="M310 520V370"/></g>
+<text x="800" y="800" text-anchor="middle" font-family="Arial, sans-serif" font-size="28" font-weight="700" fill="#F97316">Access → Practice → Feedback → Social Reinforcement → Continued Learning</text>
+</svg>
