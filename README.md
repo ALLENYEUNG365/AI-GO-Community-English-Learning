@@ -92,27 +92,36 @@ Advanced AI functions are presented separately as a roadmap rather than as compl
 
 ### Product concept / learning space
 
-![AI GO Community English Learning](docs/screenshots/overview.png)
+<img width="1280" height="719" alt="image" src="https://github.com/user-attachments/assets/e2a7130b-ba14-4b32-9488-fe6893dad954" />
+
+
 
 ### Home dashboard
 
-![Home dashboard](docs/screenshots/home.png)
+<img width="2048" height="1039" alt="image" src="https://github.com/user-attachments/assets/6e03f3ea-c54f-4715-bf22-3c3bfcc69b77" />
+
+
 
 ### Daily Check-in / community engagement
 
-![Daily Check-in](docs/screenshots/daily-checkin.png)
+<img width="1686" height="933" alt="image" src="https://github.com/user-attachments/assets/754f665f-e19b-4bb3-9e34-94c615aef68c" />
 
-### Learning Journey / onboarding logic
 
-![Learning Journey](docs/screenshots/learning-journey.png)
+### Community-Based Learning / onboarding logic
+<img width="1718" height="916" alt="image" src="https://github.com/user-attachments/assets/cd8f1bbc-8abb-46c7-89cd-d0b192599cce" />
+<img width="1897" height="829" alt="image" src="https://github.com/user-attachments/assets/df9440cd-ffcb-47a4-92cd-b09d4b45cae9" />
+
+
 
 ### Learning Hub / progress tracking
 
-![Learning Hub](docs/screenshots/learning-hub.png)
+<img width="1691" height="930" alt="image" src="https://github.com/user-attachments/assets/08e919d5-e826-4759-9592-57cc66e3b075" />
+
 
 ### AI English learning assistant
 
-![AI Assistant](docs/screenshots/ai-chat.png)
+<img width="1708" height="921" alt="image" src="https://github.com/user-attachments/assets/ee276618-c854-4064-bf2c-127b8c4281b2" />
+
 
 ---
 
