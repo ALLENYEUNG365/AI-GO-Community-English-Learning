@@ -1,0 +1,15 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="1600" height="900" viewBox="0 0 1600 900">
+<defs><linearGradient id="a" x1="0" x2="1"><stop stop-color="#4285F4"/><stop offset="1" stop-color="#34A853"/></linearGradient></defs>
+<rect width="1600" height="900" fill="#F8FAFC"/>
+<text x="100" y="100" font-family="Arial" font-size="46" font-weight="700" fill="#172033">AI GO Community English Learning</text>
+<text x="100" y="150" font-family="Arial" font-size="24" fill="#64748B">Prototype Architecture — from learner interaction to data and AI capabilities</text>
+<g font-family="Arial" text-anchor="middle">
+<rect x="130" y="240" rx="26" width="360" height="150" fill="white" stroke="#CBD5E1" stroke-width="3"/><text x="310" y="300" font-size="28" font-weight="700" fill="#172033">Learner Experience</text><text x="310" y="340" font-size="19" fill="#64748B">Next.js · TypeScript · Tailwind</text>
+<rect x="620" y="220" rx="26" width="360" height="190" fill="white" stroke="#CBD5E1" stroke-width="3"/><text x="800" y="280" font-size="28" font-weight="700" fill="#172033">Application Services</text><text x="800" y="320" font-size="19" fill="#64748B">Authentication</text><text x="800" y="350" font-size="19" fill="#64748B">Learning · Community · Progress</text><text x="800" y="380" font-size="19" fill="#64748B">AI Assistant</text>
+<rect x="1110" y="240" rx="26" width="360" height="150" fill="white" stroke="#CBD5E1" stroke-width="3"/><text x="1290" y="300" font-size="28" font-weight="700" fill="#172033">Data Layer</text><text x="1290" y="340" font-size="19" fill="#64748B">PostgreSQL / Supabase · Prisma</text>
+<rect x="375" y="560" rx="26" width="360" height="150" fill="white" stroke="#CBD5E1" stroke-width="3"/><text x="555" y="620" font-size="28" font-weight="700" fill="#172033">Identity & Storage</text><text x="555" y="660" font-size="19" fill="#64748B">Google OAuth · Cloudinary</text>
+<rect x="865" y="560" rx="26" width="360" height="150" fill="white" stroke="#CBD5E1" stroke-width="3"/><text x="1045" y="620" font-size="28" font-weight="700" fill="#172033">AI / Intelligence Layer</text><text x="1045" y="660" font-size="19" fill="#64748B">Assistive feedback · future personalization</text>
+</g>
+<g stroke="url(#a)" stroke-width="10" fill="none" stroke-linecap="round"><path d="M490 315H620"/><path d="M980 315H1110"/><path d="M800 410V560"/><path d="M620 635H735"/><path d="M865 635H735"/><path d="M735 635V410"/></g>
+<text x="800" y="810" text-anchor="middle" font-family="Arial" font-size="25" font-weight="700" fill="#2563EB">Human-centered learning experience + community + assistive AI</text>
+</svg>
