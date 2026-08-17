@@ -1,35 +1,115 @@
-# English Learning Circle
+# 🌏 AI GO Community English Learning
 
-An Open-Source AI-Enhanced English Learning Platform for Students, Educators, International Learners, and Lifelong Learners.
-English Learning Circle is an open-source educational platform designed to make English learning more accessible, engaging, and personalized through social learning, gamification, and AI-assisted educational technologies.
-The project combines social learning, gamification, and AI-powered educational tools to support:
+> **English Learning Circle** — an AI-enhanced social learning environment for practical English practice, community interaction, and lifelong learning.
 
-- Vocational education students
-- International learners
-- English teachers
-- Lifelong learners
+[![Live Demo](https://img.shields.io/badge/Live%20Demo-English%20Learning%20Circle-orange?style=for-the-badge)](https://english-learning-circle.vercel.app/) [![Repository](https://img.shields.io/badge/GitHub-Source%20Code-181717?style=for-the-badge&logo=github)](https://github.com/ALLENYEUNG365/AI-GO-Community-English-Learning) [![Demo Video](https://img.shields.io/badge/Demo%20Video-Google%20Drive-4285F4?style=for-the-badge&logo=google-drive)](https://drive.google.com/file/d/1RdD4iRmQR85VftlRQrBCIK5RDnHvn5iI4/view?usp=sharing)
 
-Our mission is to make high-quality language learning accessible to everyone through technology and open-source collaboration. The platform aims to foster collaborative learning communities while exploring responsible and ethical applications of artificial intelligence in education.
-## Educational Impact
+## ✨ What is AI GO Community English Learning?
 
-English Learning Circle is designed to support a diverse global learning community through accessible and technology-enhanced language education.
+**AI GO Community English Learning** is a community-oriented English learning platform built around the idea that language development is stronger when **practice, feedback, motivation, and social interaction** happen in one learning ecosystem.
 
-### Target Communities
+At the center of the platform is **English Learning Circle**, which combines:
 
-* Vocational education students seeking practical English communication skills
-* International learners preparing for academic and professional opportunities
-* English teachers looking for collaborative learning resources
-* Lifelong learners pursuing continuous personal and professional development
+- 🤖 **AI-assisted learning** and conversational support
+- 🔥 **Daily check-ins, streaks, points, and rewards** to reinforce learning habits
+- 👥 **Community participation** through sharing and interaction
+- 📚 **Structured learning resources** through a dedicated Learning Hub
+- 📈 **Progress visibility** that helps learners understand their learning journey
 
-### Educational Goals
+The current project documentation positions the platform for vocational students, international learners, English teachers, and lifelong learners, with a focus on accessible, collaborative, and responsible AI-enhanced language education. fileciteturn57file0L2-L2
 
-* Improve access to quality English learning resources
-* Encourage collaborative and community-driven learning
-* Promote digital literacy and AI-assisted learning
-* Support inclusive and lifelong education
-* Explore responsible applications of artificial intelligence in education
+## 🎯 The Learning Problem
 
-## Features
+Traditional language-learning tools often separate **content**, **practice**, **motivation**, and **community** into different experiences. AI GO Community English Learning proposes a more connected model:
+
+```text
+LEARN
+  ↓
+PRACTICE
+  ↓
+GET AI / COMMUNITY FEEDBACK
+  ↓
+SHARE & REFLECT
+  ↓
+EARN PROGRESS / REINFORCEMENT
+  ↓
+RETURN TO LEARN
+```
+
+The goal is not simply to add AI to a language app, but to create a **repeatable learning loop** that makes English practice more accessible, social, and sustainable.
+
+## 🧠 Educational Logic
+
+```text
+                 ┌─────────────────────────────┐
+                 │       LEARNER PROFILE       │
+                 │ goals • level • interests   │
+                 └──────────────┬──────────────┘
+                                ↓
+                 ┌─────────────────────────────┐
+                 │       LEARNING HUB           │
+                 │ lessons • resources         │
+                 └──────────────┬──────────────┘
+                                ↓
+                 ┌─────────────────────────────┐
+                 │       PRACTICE LOOP          │
+                 │ chat • writing • speaking   │
+                 └──────────────┬──────────────┘
+                                ↓
+                 ┌─────────────────────────────┐
+                 │       AI ASSISTANCE         │
+                 │ feedback • guidance         │
+                 │ clarification • suggestions│
+                 └──────────────┬──────────────┘
+                                ↓
+                 ┌─────────────────────────────┐
+                 │        COMMUNITY            │
+                 │ share • discuss • encourage │
+                 └──────────────┬──────────────┘
+                                ↓
+                 ┌─────────────────────────────┐
+                 │    MOTIVATION & PROGRESS    │
+                 │ streaks • points • rewards  │
+                 └──────────────┬──────────────┘
+                                │
+                                └──────────────→ back to LEARN
+```
+
+This reflects the project's educational intent: **access → practice → feedback → social reinforcement → continued learning**.
+
+## 🖼️ Product Preview
+
+> **Recommended repository assets:** replace the preview placeholders below with the real screenshots from your current deployed product. Suggested files: `docs/screenshots/home.png`, `docs/screenshots/ai-chat.png`, `docs/screenshots/learning-hub.png`, and `docs/screenshots/profile.png`.
+
+### Home / Learning Experience
+
+![English Learning Circle](https://placehold.co/1600x900/fff7ed/172033?text=English+Learning+Circle+%7C+Home)
+
+### AI Assistant
+
+![AI Assistant](https://placehold.co/1600x900/f8fafc/172033?text=AI+Assistant+%7C+Conversation+Practice)
+
+### Learning Hub
+
+![Learning Hub](https://placehold.co/1600x900/f8fafc/172033?text=Learning+Hub+%7C+Structured+Learning)
+
+## 🎬 Demo Video
+
+**Product walkthrough:**
+
+https://drive.google.com/file/d/1RdD4iRmQR85VftlRQrBCIK5RDnHvn5iI4/view?usp=sharing
+
+The video demonstrates the current product experience and the platform's learning, community, and AI-assisted interaction flow.
+
+## 🚀 Try the Live Prototype
+
+**Live website:** https://english-learning-circle.vercel.app/
+
+Open the deployed prototype in a modern browser to explore the current experience.
+
+## 🧩 Core Features
+
+The repository documentation currently lists:
 
 - ✅ Google OAuth Login
 - ✅ Daily Check-in System
@@ -40,80 +120,36 @@ English Learning Circle is designed to support a diverse global learning communi
 - ✅ Dark/Light Theme
 - ✅ Responsive Design
 
-## AI Roadmap
+These are the documented feature areas in the current project. fileciteturn57file0L2-L2
 
-English Learning Circle is committed to exploring responsible and impactful applications of artificial intelligence in language education.
+## 🏗️ System / Technology Overview
 
-### Planned AI Features
-
-* AI Grammar Correction and Writing Feedback
-* AI Vocabulary Coach and Personalized Learning Paths
-* AI Conversation Practice for English Learners
-* AI-generated Learning Exercises and Assessments
-* AI-powered Learning Recommendations
-* AI-assisted Teaching Resources for Educators
-* Learning Analytics and Progress Tracking
-* Multilingual Learning Support
-
-### Long-Term Vision
-
-Our goal is to build an open and accessible AI-enhanced learning ecosystem that supports students, educators, and lifelong learners around the world.
-
-## Quick Start
-
-### 1. Installation
-
-```bash
-npm install
+```text
+                    ┌─────────────────────┐
+                    │      Learner UI     │
+                    │  Next.js + Tailwind │
+                    └──────────┬──────────┘
+                               ↓
+              ┌────────────────────────────────┐
+              │      Application Services      │
+              │  Auth • Learning • Community  │
+              │  AI Assistant • Progress      │
+              └────────────────┬───────────────┘
+                               ↓
+          ┌────────────────────────────────────────┐
+          │                Data Layer               │
+          │ PostgreSQL / Supabase + Prisma ORM     │
+          └────────────────────┬───────────────────┘
+                               ↓
+        ┌─────────────────────────────────────────────┐
+        │ External / Platform Services                │
+        │ Google OAuth • Cloudinary • AI capabilities│
+        └─────────────────────────────────────────────┘
 ```
 
-### 2. Configure Environment Variables
+### Current stack
 
-Copy `.env.example` to `.env` and fill in your credentials:
-
-```env
-# Database
-DATABASE_URL="your-supabase-database-url"
-
-# NextAuth
-NEXTAUTH_URL="http://localhost:3000"
-NEXTAUTH_SECRET="your-secret-key"
-
-# Google OAuth
-GOOGLE_CLIENT_ID="your-google-client-id"
-GOOGLE_CLIENT_SECRET="your-google-client-secret"
-
-# Cloudinary
-NEXT_PUBLIC_CLOUDINARY_CLOUD_NAME="your-cloud-name"
-CLOUDINARY_API_KEY="your-api-key"
-CLOUDINARY_API_SECRET="your-api-secret"
-```
-
-### 3. Setup Database
-
-```bash
-npx prisma generate
-npx prisma migrate dev
-```
-
-### 4. Run Development Server
-
-```bash
-npm run dev
-```
-
-Open [http://localhost:3000](http://localhost:3000)
-
-## Documentation
-
-See the `docs/` folder for detailed setup guides:
-
-- `01-Google-OAuth-设置教程.md` - Google OAuth setup
-- `02-Supabase-数据库设置教程.md` - Database setup
-- `03-Cloudinary-设置教程.md` - File upload setup
-- `04-使用教程.md` - User guide
-
-## Tech Stack
+The repository README documents the current stack as:
 
 - **Framework:** Next.js 14
 - **Language:** TypeScript
@@ -124,6 +160,81 @@ See the `docs/` folder for detailed setup guides:
 - **File Storage:** Cloudinary
 - **Theme:** next-themes
 
-## License
+fileciteturn57file0L2-L2
+
+## 📚 Educational Use Cases
+
+### Vocational Education
+
+Support practical English communication for study, work, and career-oriented contexts.
+
+### International Learners
+
+Support learners preparing for academic, professional, and cross-cultural communication.
+
+### Educators
+
+Create a community-oriented space for learning resources, participation, and future AI-assisted teaching support.
+
+### Lifelong Learning
+
+Encourage consistent, low-friction practice through habit-building and community reinforcement.
+
+## 🤖 Responsible AI Roadmap
+
+The project documentation outlines future exploration in:
+
+- AI Grammar Correction and Writing Feedback
+- AI Vocabulary Coach and Personalized Learning Paths
+- AI Conversation Practice
+- AI-generated Learning Exercises and Assessments
+- AI-powered Learning Recommendations
+- AI-assisted Teaching Resources for Educators
+- Learning Analytics and Progress Tracking
+- Multilingual Learning Support
+
+fileciteturn57file0L2-L2
+
+## 🌱 Vision
+
+> **Make English learning more accessible, social, personalized, and sustainable through responsible AI and community-driven learning.**
+
+The project's documented long-term vision is an open and accessible AI-enhanced learning ecosystem for students, educators, and lifelong learners. fileciteturn57file0L2-L2
+
+## 👤 Project Story
+
+AI GO Community English Learning grows from the **English Learning Circle** concept: learning English is not only about completing lessons, but also about building confidence, practicing consistently, exchanging ideas, and learning with other people.
+
+🔗 **Project story / article:** https://www.linkedin.com/pulse/english-learning-circle-ai-powered-community-vocational-xinlin-yang-96imc/
+
+> **Reference note:** the LinkedIn article is included as project context. Claims beyond the repository documentation should be verified against the article itself.
+
+## 💻 Quick Start
+
+```bash
+npm install
+npm run dev
+```
+
+Then open:
+
+```text
+http://localhost:3000
+```
+
+For local authentication, database, and storage configuration, see `.env.example` and the setup documentation in the project. fileciteturn57file0L2-L2
+
+## 📁 Repository Structure
+
+```text
+AI-GO-Community-English-Learning/
+├── app/            # Next.js application routes
+├── components/     # Reusable UI components
+├── prisma/         # Database schema and ORM layer
+├── README.md       # Project documentation
+└── package.json    # Dependencies and scripts
+```
+
+## 📄 License
 
 MIT
