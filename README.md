@@ -16,7 +16,7 @@ At the center of the platform is **English Learning Circle**, which combines:
 - 📚 **Structured learning resources** through a dedicated Learning Hub
 - 📈 **Progress visibility** that helps learners understand their learning journey
 
-The current project documentation positions the platform for vocational students, international learners, English teachers, and lifelong learners, with a focus on accessible, collaborative, and responsible AI-enhanced language education. fileciteturn57file0L2-L2
+The current project documentation positions the platform for vocational students, international learners, English teachers, and lifelong learners, with a focus on accessible, collaborative, and responsible AI-enhanced language education.
 
 ## 🎯 The Learning Problem
 
@@ -79,19 +79,23 @@ This reflects the project's educational intent: **access → practice → feedba
 
 ## 🖼️ Product Preview
 
-> **Recommended repository assets:** replace the preview placeholders below with the real screenshots from your current deployed product. Suggested files: `docs/screenshots/home.png`, `docs/screenshots/ai-chat.png`, `docs/screenshots/learning-hub.png`, and `docs/screenshots/profile.png`.
+> **Repository asset plan:** add real screenshots under `docs/screenshots/` and use the filenames below. Keep the screenshots focused on the strongest user-facing flows.
 
-### Home / Learning Experience
+### 1. Home / Learning Experience
 
-![English Learning Circle](https://placehold.co/1600x900/fff7ed/172033?text=English+Learning+Circle+%7C+Home)
+![English Learning Circle Home](docs/screenshots/home.png)
 
-### AI Assistant
+### 2. AI Assistant
 
-![AI Assistant](https://placehold.co/1600x900/f8fafc/172033?text=AI+Assistant+%7C+Conversation+Practice)
+![AI Assistant](docs/screenshots/ai-chat.png)
 
-### Learning Hub
+### 3. Learning Hub
 
-![Learning Hub](https://placehold.co/1600x900/f8fafc/172033?text=Learning+Hub+%7C+Structured+Learning)
+![Learning Hub](docs/screenshots/learning-hub.png)
+
+### 4. Learner Profile / Progress
+
+![Learner Profile](docs/screenshots/profile.png)
 
 ## 🎬 Demo Video
 
@@ -109,7 +113,7 @@ Open the deployed prototype in a modern browser to explore the current experienc
 
 ## 🧩 Core Features
 
-The repository documentation currently lists:
+The current project documentation lists:
 
 - ✅ Google OAuth Login
 - ✅ Daily Check-in System
@@ -119,8 +123,6 @@ The repository documentation currently lists:
 - ✅ Learning Hub
 - ✅ Dark/Light Theme
 - ✅ Responsive Design
-
-These are the documented feature areas in the current project. fileciteturn57file0L2-L2
 
 ## 🏗️ System / Technology Overview
 
@@ -160,8 +162,6 @@ The repository README documents the current stack as:
 - **File Storage:** Cloudinary
 - **Theme:** next-themes
 
-fileciteturn57file0L2-L2
-
 ## 📚 Educational Use Cases
 
 ### Vocational Education
@@ -193,13 +193,11 @@ The project documentation outlines future exploration in:
 - Learning Analytics and Progress Tracking
 - Multilingual Learning Support
 
-fileciteturn57file0L2-L2
-
 ## 🌱 Vision
 
 > **Make English learning more accessible, social, personalized, and sustainable through responsible AI and community-driven learning.**
 
-The project's documented long-term vision is an open and accessible AI-enhanced learning ecosystem for students, educators, and lifelong learners. fileciteturn57file0L2-L2
+The project's documented long-term vision is an open and accessible AI-enhanced learning ecosystem for students, educators, and lifelong learners.
 
 ## 👤 Project Story
 
@@ -222,7 +220,7 @@ Then open:
 http://localhost:3000
 ```
 
-For local authentication, database, and storage configuration, see `.env.example` and the setup documentation in the project. fileciteturn57file0L2-L2
+For local authentication, database, and storage configuration, see `.env.example` and the setup documentation in the project.
 
 ## 📁 Repository Structure
 
