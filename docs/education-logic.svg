@@ -1,0 +1,25 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="1600" height="900" viewBox="0 0 1600 900">
+<rect width="1600" height="900" rx="40" fill="#0b1220"/>
+<text x="90" y="95" fill="#fff" font-family="Arial, sans-serif" font-size="44" font-weight="700">AI GO Community English Learning</text>
+<text x="90" y="145" fill="#9ca9bd" font-family="Arial, sans-serif" font-size="24">Education Logic • From access to habit, practice, feedback and community reinforcement</text>
+<g font-family="Arial, sans-serif" text-anchor="middle">
+<rect x="95" y="250" width="230" height="140" rx="28" fill="#17233a" stroke="#ff9d00" stroke-width="3"/>
+<text x="210" y="305" fill="#ffb33b" font-size="25" font-weight="700">1. ACCESS</text><text x="210" y="345" fill="#fff" font-size="20">Easy sign-in</text><text x="210" y="375" fill="#b8c2d1" font-size="17">Learner profile</text>
+<rect x="390" y="250" width="230" height="140" rx="28" fill="#17233a" stroke="#ffb13b" stroke-width="3"/>
+<text x="505" y="305" fill="#ffb33b" font-size="25" font-weight="700">2. BUILD HABIT</text><text x="505" y="345" fill="#fff" font-size="20">Daily check-in</text><text x="505" y="375" fill="#b8c2d1" font-size="17">Streaks + points</text>
+<rect x="685" y="250" width="230" height="140" rx="28" fill="#17233a" stroke="#42a5ff" stroke-width="3"/>
+<text x="800" y="305" fill="#62b8ff" font-size="25" font-weight="700">3. PRACTICE</text><text x="800" y="345" fill="#fff" font-size="20">Learn + interact</text><text x="800" y="375" fill="#b8c2d1" font-size="17">Video • Reading • Chat</text>
+<rect x="980" y="250" width="230" height="140" rx="28" fill="#17233a" stroke="#63d5a2" stroke-width="3"/>
+<text x="1095" y="305" fill="#71e0ae" font-size="25" font-weight="700">4. AI FEEDBACK</text><text x="1095" y="345" fill="#fff" font-size="20">AI tutoring</text><text x="1095" y="375" fill="#b8c2d1" font-size="17">Guidance + suggestions</text>
+<rect x="1275" y="250" width="230" height="140" rx="28" fill="#17233a" stroke="#bc8cff" stroke-width="3"/>
+<text x="1390" y="305" fill="#c89dff" font-size="25" font-weight="700">5. COMMUNITY</text><text x="1390" y="345" fill="#fff" font-size="20">Share + encourage</text><text x="1390" y="375" fill="#b8c2d1" font-size="17">Social reinforcement</text>
+<g stroke="#ffb13b" stroke-width="6" fill="none" stroke-linecap="round"><path d="M325 320 H390"/><path d="M620 320 H685"/></g>
+<g stroke="#42a5ff" stroke-width="6" fill="none" stroke-linecap="round"><path d="M915 320 H980"/></g>
+<g stroke="#63d5a2" stroke-width="6" fill="none" stroke-linecap="round"><path d="M1210 320 H1275"/></g>
+<rect x="300" y="530" width="1000" height="190" rx="35" fill="#101a2d" stroke="#33465f" stroke-width="2"/>
+<text x="800" y="590" fill="#fff" font-size="30" font-weight="700">LEARNING OUTCOME</text>
+<text x="800" y="635" fill="#dbe5f2" font-size="22">Confidence • consistency • practical communication • lifelong learning</text>
+<text x="800" y="675" fill="#8fd7ff" font-size="20">The loop returns learners to the next challenge instead of ending after one lesson.</text>
+<path d="M1390 390 C1390 500 1270 515 1270 530" fill="none" stroke="#bc8cff" stroke-width="5" stroke-dasharray="10 10"/>
+</g>
+</svg>
