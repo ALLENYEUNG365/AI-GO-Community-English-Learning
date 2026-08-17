@@ -127,7 +127,7 @@ Advanced AI functions are presented separately as a roadmap rather than as compl
 
 ## 🎬 Demo Video
 
-[▶ Watch the AI GO Community English Learning demo](https://drive.google.com/file/d/1RdD4iRmQR85VftlRqbCIK5RDnHvn5iI4/view?usp=sharing)
+[▶ Watch the AI GO Community English Learning demo](https://drive.google.com/file/d/1RdD4iRmQR85VftLrQbCIK5RDnHvn5iI4/view)
 
 Keep the Google Drive permission set to **Anyone with the link can view** so reviewers can access the video without signing in.
 
