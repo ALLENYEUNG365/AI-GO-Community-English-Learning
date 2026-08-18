@@ -53,13 +53,13 @@ The goal is not simply to add AI to a language app, but to create a **repeatable
 
 The model connects easy access, habit-building, structured learning, AI assistance, community reinforcement, and continued progress.
 
-![Learning Journey](docs/screenshots/learning-journey.png)
+![Learning Journey]
 
 ---
 
 ## 🏗️ Product / Technology Architecture
 
-![Architecture Diagram](docs/architecture.svg)
+![Architecture Diagram]
 
 The documented stack includes:
 
