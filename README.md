@@ -39,7 +39,8 @@ EARN PROGRESS / REINFORCEMENT
   ↓
 RETURN TO LEARN
 ```
-<img width="1536" height="1024" alt="image" src="https://github.com/user-attachments/assets/a5368d4a-67eb-4c5a-b5bf-ba35ac6177c3" />
+<img width="1536" height="1024" alt="image" src="https://github.com/user-attachments/assets/8916c7eb-9dea-40f0-a3a9-6c881ec2516a" />
+
 
 The goal is not simply to add AI to a language app, but to create a **repeatable learning loop** that makes English practice more accessible, social, and sustainable.
 
@@ -53,13 +54,12 @@ The goal is not simply to add AI to a language app, but to create a **repeatable
 
 The model connects easy access, habit-building, structured learning, AI assistance, community reinforcement, and continued progress.
 
-![Learning Journey]
 
 ---
 
 ## 🏗️ Product / Technology Architecture
+<img width="1536" height="1024" alt="image" src="https://github.com/user-attachments/assets/ef71da48-3a57-440b-abe5-06e20f43d5d7" />
 
-![Architecture Diagram]
 
 The documented stack includes:
 
