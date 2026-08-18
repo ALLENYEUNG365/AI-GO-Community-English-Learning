@@ -39,6 +39,7 @@ EARN PROGRESS / REINFORCEMENT
   ↓
 RETURN TO LEARN
 ```
+<img width="1536" height="1024" alt="image" src="https://github.com/user-attachments/assets/a5368d4a-67eb-4c5a-b5bf-ba35ac6177c3" />
 
 The goal is not simply to add AI to a language app, but to create a **repeatable learning loop** that makes English practice more accessible, social, and sustainable.
 
