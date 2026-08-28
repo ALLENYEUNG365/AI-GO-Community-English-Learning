@@ -1,7 +1,6 @@
 'use client';
 
 import { useState } from 'react';
-import { useSession } from 'next-auth/react';
 import { X, Image as ImageIcon, Video, Type, Send, Loader2 } from 'lucide-react';
 
 type UploadType = 'text' | 'image' | 'video';
@@ -9,6 +8,9 @@ type UploadType = 'text' | 'image' | 'video';
 interface CreatePostProps {
   onPostCreated?: () => void;
 }
+
+const ALLOWED_IMAGE_TYPES = new Set(['image/jpeg', 'image/png', 'image/gif', 'image/webp']);
+const ALLOWED_VIDEO_TYPES = new Set(['video/mp4', 'video/quicktime', 'video/webm']);
 
 export default function CreatePost({ onPostCreated }: CreatePostProps) {
   const { data: session } = useSession();
@@ -26,6 +28,18 @@ export default function CreatePost({ onPostCreated }: CreatePostProps) {
     const maxSize = postType === 'video' ? 100 * 1024 * 1024 : 10 * 1024 * 1024;
     if (file.size > maxSize) {
       alert(`File too large! ${postType === 'video' ? 'Videos' : 'Images'} must be no larger than ${maxSize / 1024 / 1024}MB.`);
+      e.target.value = '';
+      return;
+    }
+
+    const allowedTypes = postType === 'video' ? ALLOWED_VIDEO_TYPES : ALLOWED_IMAGE_TYPES;
+    if (!allowedTypes.has(file.type)) {
+      alert(
+        postType === 'video'
+          ? 'Unsupported video format. Please use MP4, MOV, or WebM.'
+          : 'Unsupported image format. Please use JPG, PNG, GIF, or WebP.'
+      );
+      e.target.value = '';
       return;
     }
 
@@ -73,6 +87,7 @@ export default function CreatePost({ onPostCreated }: CreatePostProps) {
         formData.append('timestamp', String(signatureData.timestamp));
         formData.append('signature', signatureData.signature);
         formData.append('folder', signatureData.folder);
+        formData.append('allowed_formats', signatureData.allowedFormats);
 
         const cloudinaryUrl = `https://api.cloudinary.com/v1_1/${signatureData.cloudName}/${resourceType}/upload`;
         const uploadResponse = await fetch(cloudinaryUrl, {
@@ -220,7 +235,7 @@ export default function CreatePost({ onPostCreated }: CreatePostProps) {
                 <label className="block">
                   <input
                     type="file"
-                    accept={postType === 'image' ? 'image/*' : 'video/*'}
+                    accept={postType === 'image' ? 'image/jpeg,image/png,image/gif,image/webp' : 'video/mp4,video/quicktime,video/webm'}
                     onChange={handleFileSelect}
                     className="hidden"
                   />
@@ -234,7 +249,7 @@ export default function CreatePost({ onPostCreated }: CreatePostProps) {
                       Click to upload {postType === 'image' ? 'an image' : 'a video'}
                     </p>
                     <p className="text-xs text-gray-400 mt-1">
-                      {postType === 'image' ? 'JPG, PNG, GIF (max 10MB)' : 'MP4, MOV (max 100MB)'}
+                      {postType === 'image' ? 'JPG, PNG, GIF, WebP (max 10MB)' : 'MP4, MOV, WebM (max 100MB)'}
                     </p>
                   </div>
                 </label>
