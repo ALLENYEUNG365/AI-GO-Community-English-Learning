@@ -18,7 +18,7 @@ export default function DailyCheckIn() {
 
     const checkTodayStatus = async () => {
       try {
-        const response = await fetch(`/api/checkin/status?email=${session?.user?.email}`);
+        const response = await fetch('/api/checkin');
         if (response.ok) {
           const data = await response.json();
           setHasCheckedIn(data.hasCheckedIn);
@@ -41,33 +41,24 @@ export default function DailyCheckIn() {
     try {
       const response = await fetch('/api/checkin', {
         method: 'POST',
-        headers: {
-          'Content-Type': 'application/json',
-        },
-        body: JSON.stringify({
-          email: session.user.email,
-        }),
       });
 
+      const data = await response.json();
       if (!response.ok) {
-        throw new Error('签到失败');
+        throw new Error(data.error || '签到失败');
       }
 
-      const data = await response.json();
-      
-      // 更新状态
       setHasCheckedIn(true);
       setStreak(data.streak);
       setTodayPoints(data.pointsEarned);
       setShowReward(true);
 
-      // 3秒后隐藏奖励提示
       setTimeout(() => {
         setShowReward(false);
       }, 3000);
     } catch (error) {
       console.error('签到失败:', error);
-      alert('签到失败，请重试');
+      alert(error instanceof Error ? error.message : '签到失败，请重试');
     } finally {
       setIsChecking(false);
     }
@@ -77,14 +68,15 @@ export default function DailyCheckIn() {
     return null;
   }
 
+  const currentStreakBonus = Math.min(Math.max(streak - 1, 0), 20);
+  const nextCheckInPoints = 5 + Math.min(streak, 20);
+
   return (
     <div className="bg-gradient-to-br from-amber-500 to-orange-500 rounded-3xl p-6 shadow-xl text-white mb-6 relative overflow-hidden">
-      {/* 背景装饰 */}
       <div className="absolute top-0 right-0 w-32 h-32 bg-white/10 rounded-full -mr-16 -mt-16" />
       <div className="absolute bottom-0 left-0 w-24 h-24 bg-white/10 rounded-full -ml-12 -mb-12" />
 
       <div className="relative z-10">
-        {/* 头部 */}
         <div className="flex items-center justify-between mb-4">
           <div className="flex items-center gap-3">
             <div className="w-12 h-12 bg-white/20 backdrop-blur-sm rounded-full flex items-center justify-center">
@@ -95,8 +87,7 @@ export default function DailyCheckIn() {
               <p className="text-sm text-white/80">坚持打卡，获取积分奖励</p>
             </div>
           </div>
-          
-          {/* 连续签到天数 */}
+
           {streak > 0 && (
             <div className="text-center">
               <div className="flex items-center gap-1 text-2xl font-bold">
@@ -108,7 +99,6 @@ export default function DailyCheckIn() {
           )}
         </div>
 
-        {/* 签到按钮 */}
         {!hasCheckedIn ? (
           <button
             onClick={handleCheckIn}
@@ -123,7 +113,7 @@ export default function DailyCheckIn() {
             ) : (
               <>
                 <CheckCircle className="w-6 h-6" />
-                立即签到 +{5 + Math.min(streak, 20)}积分
+                立即签到 +{nextCheckInPoints}积分
               </>
             )}
           </button>
@@ -135,7 +125,6 @@ export default function DailyCheckIn() {
           </div>
         )}
 
-        {/* 积分说明 */}
         <div className="grid grid-cols-3 gap-3 mt-4">
           <div className="bg-white/10 backdrop-blur-sm rounded-lg p-3 text-center">
             <Trophy className="w-5 h-5 mx-auto mb-1" />
@@ -145,12 +134,12 @@ export default function DailyCheckIn() {
           <div className="bg-white/10 backdrop-blur-sm rounded-lg p-3 text-center">
             <Flame className="w-5 h-5 mx-auto mb-1" />
             <p className="text-xs text-white/80">连续奖励</p>
-            <p className="font-bold">+{Math.min(streak, 20)}</p>
+            <p className="font-bold">+{currentStreakBonus}</p>
           </div>
           <div className="bg-white/10 backdrop-blur-sm rounded-lg p-3 text-center">
             <Gift className="w-5 h-5 mx-auto mb-1" />
-            <p className="text-xs text-white/80">今日总计</p>
-            <p className="font-bold">+{5 + Math.min(streak, 20)}</p>
+            <p className="text-xs text-white/80">下次总计</p>
+            <p className="font-bold">+{nextCheckInPoints}</p>
           </div>
         </div>
 
@@ -159,7 +148,6 @@ export default function DailyCheckIn() {
         </p>
       </div>
 
-      {/* 奖励动画 */}
       {showReward && (
         <div className="absolute inset-0 flex items-center justify-center bg-white/20 backdrop-blur-sm z-20 rounded-3xl">
           <div className="text-center animate-bounce">
