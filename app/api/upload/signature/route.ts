@@ -107,7 +107,10 @@ export async function POST(request: Request) {
     const allowedFormats = ALLOWED_FORMATS[resourceType as keyof typeof ALLOWED_FORMATS];
     const timestamp = Math.floor(Date.now() / 1000);
     const paramsToSign = `allowed_formats=${allowedFormats}&folder=${CLOUDINARY_FOLDER}&timestamp=${timestamp}`;
-    const signature = createHash('sha1')
+
+    // Cloudinary supports SHA-256 for upload signatures. Use SHA-256 rather
+    // than SHA-1 so the signature endpoint does not rely on a weak digest.
+    const signature = createHash('sha256')
       .update(`${paramsToSign}${apiSecret}`)
       .digest('hex');
 
