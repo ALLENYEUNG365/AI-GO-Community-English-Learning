@@ -8,6 +8,10 @@ const ALLOWED_FORMATS = {
   image: 'jpg,jpeg,png,gif,webp',
   video: 'mp4,mov,webm',
 } as const;
+const MAX_FILE_SIZES = {
+  image: 10 * 1024 * 1024,
+  video: 100 * 1024 * 1024,
+} as const;
 const CLOUDINARY_FOLDER = 'english-learning-circle';
 
 // Defense-in-depth rate limiting for the signature endpoint.
@@ -16,15 +20,6 @@ const CLOUDINARY_FOLDER = 'english-learning-circle';
 const RATE_LIMIT_WINDOW_MS = 60 * 1000;
 const MAX_SIGNATURES_PER_WINDOW = 10;
 const signatureRequests = new Map<string, number[]>();
-
-function getClientIp(request: Request): string {
-  const forwardedFor = request.headers.get('x-forwarded-for');
-  if (forwardedFor) {
-    return forwardedFor.split(',')[0].trim();
-  }
-
-  return request.headers.get('x-real-ip')?.trim() || 'unknown';
-}
 
 function isRateLimited(key: string): boolean {
   const now = Date.now();
@@ -55,14 +50,15 @@ function isRateLimited(key: string): boolean {
 export async function POST(request: Request) {
   try {
     const session = await getServerSession(authOptions);
-    if (!session?.user?.email) {
+    const email = session?.user?.email?.trim().toLowerCase();
+
+    if (!email) {
       return NextResponse.json({ error: 'User is not signed in' }, { status: 401 });
     }
 
-    const clientIp = getClientIp(request);
-    const rateLimitKey = `${session.user.email.toLowerCase()}:${clientIp}`;
-
-    if (isRateLimited(rateLimitKey)) {
+    // Rate-limit by authenticated account rather than client IP so changing
+    // networks cannot trivially bypass the upload-signature quota.
+    if (isRateLimited(email)) {
       return NextResponse.json(
         { error: 'Too many upload requests. Please try again in a minute.' },
         {
@@ -86,9 +82,26 @@ export async function POST(request: Request) {
 
     const body = await request.json().catch(() => ({}));
     const resourceType = typeof body.resourceType === 'string' ? body.resourceType : '';
+    const fileSize = typeof body.fileSize === 'number' ? body.fileSize : Number(body.fileSize);
 
     if (!ALLOWED_RESOURCE_TYPES.has(resourceType)) {
       return NextResponse.json({ error: 'Unsupported upload type' }, { status: 400 });
+    }
+
+    const maxFileSize = MAX_FILE_SIZES[resourceType as keyof typeof MAX_FILE_SIZES];
+
+    if (!Number.isSafeInteger(fileSize) || fileSize <= 0) {
+      return NextResponse.json({ error: 'A valid file size is required' }, { status: 400 });
+    }
+
+    if (fileSize > maxFileSize) {
+      return NextResponse.json(
+        {
+          error: `File is too large. Maximum size is ${maxFileSize / 1024 / 1024}MB.`,
+          maxFileSize,
+        },
+        { status: 413 }
+      );
     }
 
     const allowedFormats = ALLOWED_FORMATS[resourceType as keyof typeof ALLOWED_FORMATS];
@@ -105,6 +118,7 @@ export async function POST(request: Request) {
       signature,
       folder: CLOUDINARY_FOLDER,
       allowedFormats,
+      maxFileSize,
     }, {
       headers: { 'Cache-Control': 'no-store' },
     });
