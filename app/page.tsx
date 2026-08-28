@@ -5,7 +5,7 @@ import ThemeToggle from '@/components/ThemeToggle';
 export default function Home() {
   return (
     <div className="min-h-screen bg-gradient-to-br from-amber-50 via-orange-50 to-amber-100 dark:from-gray-900 dark:via-gray-800 dark:to-gray-900">
-      {/* 顶部导航 */}
+      {/* Top navigation */}
       <div className="fixed top-0 left-0 right-0 z-50 bg-white/80 dark:bg-gray-900/80 backdrop-blur-md border-b border-amber-200 dark:border-gray-700">
         <div className="container mx-auto px-4 py-3 flex items-center justify-between">
           <div className="flex items-center gap-3">
@@ -23,7 +23,7 @@ export default function Home() {
         </div>
       </div>
 
-      {/* 主要内容 */}
+      {/* Main content */}
       <div className="container mx-auto px-4 pt-24 pb-12">
         {/* Hero Section */}
         <div className="text-center mb-16">
