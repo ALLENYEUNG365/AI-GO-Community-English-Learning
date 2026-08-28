@@ -4,6 +4,23 @@ import { Prisma } from '@prisma/client';
 import prisma from '@/lib/prisma';
 import { authOptions } from '@/lib/auth';
 
+const CHECKIN_TIMEZONE = process.env.CHECKIN_TIMEZONE || 'Asia/Shanghai';
+
+function getCheckInDate(): Date {
+  const dateKey = new Intl.DateTimeFormat('en-CA', {
+    timeZone: CHECKIN_TIMEZONE,
+    year: 'numeric',
+    month: '2-digit',
+    day: '2-digit',
+  }).format(new Date());
+
+  return new Date(`${dateKey}T00:00:00.000Z`);
+}
+
+function getYesterday(date: Date): Date {
+  return new Date(date.getTime() - 24 * 60 * 60 * 1000);
+}
+
 export async function POST() {
   try {
     const session = await getServerSession(authOptions);
@@ -31,14 +48,15 @@ export async function POST() {
           });
         }
 
-        // The application currently treats the database/server local day as the check-in day.
-        const today = new Date();
-        today.setHours(0, 0, 0, 0);
+        const today = getCheckInDate();
+        const yesterday = getYesterday(today);
 
-        const existingCheckIn = await tx.checkIn.findFirst({
+        const existingCheckIn = await tx.checkIn.findUnique({
           where: {
-            userId: user.id,
-            createdAt: { gte: today },
+            userId_checkInDate: {
+              userId: user.id,
+              checkInDate: today,
+            },
           },
         });
 
@@ -46,15 +64,11 @@ export async function POST() {
           return { error: '今日已签到' as const };
         }
 
-        const yesterday = new Date(today);
-        yesterday.setDate(yesterday.getDate() - 1);
-
-        const yesterdayCheckIn = await tx.checkIn.findFirst({
+        const yesterdayCheckIn = await tx.checkIn.findUnique({
           where: {
-            userId: user.id,
-            createdAt: {
-              gte: yesterday,
-              lt: today,
+            userId_checkInDate: {
+              userId: user.id,
+              checkInDate: yesterday,
             },
           },
         });
@@ -66,6 +80,7 @@ export async function POST() {
         await tx.checkIn.create({
           data: {
             userId: user.id,
+            checkInDate: today,
             points: totalPoints,
           },
         });
@@ -92,8 +107,14 @@ export async function POST() {
       return NextResponse.json({ error: result.error }, { status: 400 });
     }
 
-    return NextResponse.json(result);
+    return NextResponse.json(result, {
+      headers: { 'Cache-Control': 'no-store' },
+    });
   } catch (error) {
+    if (error instanceof Prisma.PrismaClientKnownRequestError && error.code === 'P2002') {
+      return NextResponse.json({ error: '今日已签到' }, { status: 400 });
+    }
+
     console.error('签到失败:', error);
     return NextResponse.json({ error: '签到失败，请稍后重试' }, { status: 500 });
   }
@@ -116,22 +137,27 @@ export async function GET() {
       return NextResponse.json({
         hasCheckedIn: false,
         streak: 0,
+      }, {
+        headers: { 'Cache-Control': 'no-store' },
       });
     }
 
-    const today = new Date();
-    today.setHours(0, 0, 0, 0);
+    const today = getCheckInDate();
 
-    const todayCheckIn = await prisma.checkIn.findFirst({
+    const todayCheckIn = await prisma.checkIn.findUnique({
       where: {
-        userId: user.id,
-        createdAt: { gte: today },
+        userId_checkInDate: {
+          userId: user.id,
+          checkInDate: today,
+        },
       },
     });
 
     return NextResponse.json({
       hasCheckedIn: !!todayCheckIn,
       streak: user.streak,
+    }, {
+      headers: { 'Cache-Control': 'no-store' },
     });
   } catch (error) {
     console.error('获取签到状态失败:', error);
