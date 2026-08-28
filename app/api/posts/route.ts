@@ -42,12 +42,12 @@ export async function POST(request: Request) {
     const email = session?.user?.email;
 
     if (!email) {
-      return NextResponse.json({ error: '用户未登录' }, { status: 401 });
+      return NextResponse.json({ error: 'User is not signed in' }, { status: 401 });
     }
 
     const contentLength = request.headers.get('content-length');
     if (contentLength && Number(contentLength) > MAX_REQUEST_BYTES) {
-      return NextResponse.json({ error: '请求内容过大' }, { status: 413 });
+      return NextResponse.json({ error: 'Request content is too large' }, { status: 413 });
     }
 
     const body = await request.json();
@@ -58,30 +58,30 @@ export async function POST(request: Request) {
       : String(body.mediaType);
 
     if (!content && !mediaUrl) {
-      return NextResponse.json({ error: '内容不能为空' }, { status: 400 });
+      return NextResponse.json({ error: 'Content cannot be empty' }, { status: 400 });
     }
 
     if (content.length > MAX_CONTENT_LENGTH) {
       return NextResponse.json(
-        { error: `内容不能超过 ${MAX_CONTENT_LENGTH} 个字符` },
+        { error: `Content cannot exceed ${MAX_CONTENT_LENGTH} characters` },
         { status: 400 }
       );
     }
 
     if (mediaType !== null && !ALLOWED_MEDIA_TYPES.has(mediaType)) {
-      return NextResponse.json({ error: '不支持的媒体类型' }, { status: 400 });
+      return NextResponse.json({ error: 'Unsupported media type' }, { status: 400 });
     }
 
     if (mediaType && !mediaUrl) {
-      return NextResponse.json({ error: '媒体地址不能为空' }, { status: 400 });
+      return NextResponse.json({ error: 'Media URL cannot be empty' }, { status: 400 });
     }
 
     if (mediaUrl && !mediaType) {
-      return NextResponse.json({ error: '媒体类型不能为空' }, { status: 400 });
+      return NextResponse.json({ error: 'Media type cannot be empty' }, { status: 400 });
     }
 
     if (mediaUrl && !isAllowedMediaUrl(mediaUrl, mediaType)) {
-      return NextResponse.json({ error: '媒体地址不受信任' }, { status: 400 });
+      return NextResponse.json({ error: 'Media URL is not trusted' }, { status: 400 });
     }
 
     const result = await prisma.$transaction(async (tx) => {
@@ -115,11 +115,11 @@ export async function POST(request: Request) {
       ]);
 
       if (recentPosts >= MAX_POSTS_PER_MINUTE) {
-        return { error: '发布过于频繁，请稍后再试' as const };
+        return { error: 'You are posting too frequently. Please try again later.' as const };
       }
 
       if (dailyPosts >= MAX_POSTS_PER_DAY) {
-        return { error: '今日发布次数已达到上限' as const };
+        return { error: 'You have reached the daily post limit.' as const };
       }
 
       const post = await tx.post.create({
@@ -153,8 +153,8 @@ export async function POST(request: Request) {
       { headers: { 'Cache-Control': 'no-store' } }
     );
   } catch (error) {
-    console.error('创建帖子失败:', error);
-    return NextResponse.json({ error: '创建帖子失败，请稍后重试' }, { status: 500 });
+    console.error('Failed to create post:', error);
+    return NextResponse.json({ error: 'Failed to create post. Please try again later.' }, { status: 500 });
   }
 }
 
@@ -183,7 +183,7 @@ export async function GET(request: Request) {
 
     return NextResponse.json({ posts });
   } catch (error) {
-    console.error('获取帖子列表失败:', error);
-    return NextResponse.json({ error: '获取帖子列表失败' }, { status: 500 });
+    console.error('Failed to load post list:', error);
+    return NextResponse.json({ error: 'Failed to load post list' }, { status: 500 });
   }
 }
