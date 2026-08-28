@@ -27,7 +27,7 @@ export default function ChatPage() {
   const handleSend = () => {
     if (!input.trim()) return;
 
-    // 添加用户消息
+    // Add user message
     const userMessage: Message = {
       id: messages.length + 1,
       text: input,
@@ -37,11 +37,11 @@ export default function ChatPage() {
 
     setMessages([...messages, userMessage]);
 
-    // 模拟 AI 回复
+    // Simulate AI response
     setTimeout(() => {
       const aiResponse: Message = {
         id: messages.length + 2,
-        text: `You said: "${input}". That's great! Keep practicing your English! 🎉`,
+        text: `You said: \"${input}\". That's great! Keep practicing your English! 🎉`,
         sender: 'ai',
         timestamp: new Date(),
       };
@@ -53,7 +53,7 @@ export default function ChatPage() {
 
   return (
     <div className="min-h-screen bg-gradient-to-br from-amber-50 via-orange-50 to-amber-100 dark:from-gray-900 dark:via-gray-800 dark:to-gray-900 pb-20">
-      {/* 顶部导航 */}
+      {/* Top navigation */}
       <div className="sticky top-0 z-40 bg-white/80 dark:bg-gray-900/80 backdrop-blur-md border-b border-amber-200 dark:border-gray-700">
         <div className="container mx-auto px-4 py-3 flex items-center justify-between">
           <div className="flex items-center gap-3">
@@ -69,7 +69,7 @@ export default function ChatPage() {
         </div>
       </div>
 
-      {/* 聊天消息区 */}
+      {/* Chat messages */}
       <div className="container mx-auto px-4 py-6 max-w-4xl">
         <div className="space-y-4">
           {messages.map((message) => (
@@ -111,7 +111,7 @@ export default function ChatPage() {
         </div>
       </div>
 
-      {/* 输入框 */}
+      {/* Input field */}
       <div className="fixed bottom-16 left-0 right-0 bg-white/90 dark:bg-gray-900/90 backdrop-blur-md border-t border-amber-200 dark:border-gray-700 px-4 py-3">
         <div className="container mx-auto max-w-4xl flex gap-3">
           <input
