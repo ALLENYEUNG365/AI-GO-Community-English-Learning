@@ -55,14 +55,26 @@ export default function CreatePost({ onPostCreated }: CreatePostProps) {
       let mediaUrl = '';
 
       if (selectedFile) {
+        const resourceType = postType === 'video' ? 'video' : 'image';
+        const signatureResponse = await fetch('/api/upload/signature', {
+          method: 'POST',
+          headers: { 'Content-Type': 'application/json' },
+          body: JSON.stringify({ resourceType }),
+        });
+
+        const signatureData = await signatureResponse.json();
+        if (!signatureResponse.ok) {
+          throw new Error(signatureData.error || '无法准备文件上传');
+        }
+
         const formData = new FormData();
         formData.append('file', selectedFile);
-        formData.append('upload_preset', process.env.NEXT_PUBLIC_CLOUDINARY_UPLOAD_PRESET!);
+        formData.append('api_key', signatureData.apiKey);
+        formData.append('timestamp', String(signatureData.timestamp));
+        formData.append('signature', signatureData.signature);
+        formData.append('folder', signatureData.folder);
 
-        const cloudinaryUrl = postType === 'video'
-          ? `https://api.cloudinary.com/v1_1/${process.env.NEXT_PUBLIC_CLOUDINARY_CLOUD_NAME}/video/upload`
-          : `https://api.cloudinary.com/v1_1/${process.env.NEXT_PUBLIC_CLOUDINARY_CLOUD_NAME}/image/upload`;
-
+        const cloudinaryUrl = `https://api.cloudinary.com/v1_1/${signatureData.cloudName}/${resourceType}/upload`;
         const uploadResponse = await fetch(cloudinaryUrl, {
           method: 'POST',
           body: formData,
@@ -73,6 +85,9 @@ export default function CreatePost({ onPostCreated }: CreatePostProps) {
         }
 
         const uploadData = await uploadResponse.json();
+        if (typeof uploadData.secure_url !== 'string') {
+          throw new Error('上传服务未返回有效文件地址');
+        }
         mediaUrl = uploadData.secure_url;
       }
 
