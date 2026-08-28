@@ -10,6 +10,8 @@ interface CreatePostProps {
   onPostCreated?: () => void;
 }
 
+const MAX_IMAGE_SIZE = 10 * 1024 * 1024;
+const MAX_VIDEO_SIZE = 100 * 1024 * 1024;
 const ALLOWED_IMAGE_TYPES = new Set(['image/jpeg', 'image/png', 'image/gif', 'image/webp']);
 const ALLOWED_VIDEO_TYPES = new Set(['video/mp4', 'video/quicktime', 'video/webm']);
 
@@ -26,7 +28,7 @@ export default function CreatePost({ onPostCreated }: CreatePostProps) {
     const file = e.target.files?.[0];
     if (!file) return;
 
-    const maxSize = postType === 'video' ? 100 * 1024 * 1024 : 10 * 1024 * 1024;
+    const maxSize = postType === 'video' ? MAX_VIDEO_SIZE : MAX_IMAGE_SIZE;
     if (file.size > maxSize) {
       alert(`File too large! ${postType === 'video' ? 'Videos' : 'Images'} must be no larger than ${maxSize / 1024 / 1024}MB.`);
       e.target.value = '';
@@ -74,12 +76,19 @@ export default function CreatePost({ onPostCreated }: CreatePostProps) {
         const signatureResponse = await fetch('/api/upload/signature', {
           method: 'POST',
           headers: { 'Content-Type': 'application/json' },
-          body: JSON.stringify({ resourceType }),
+          body: JSON.stringify({
+            resourceType,
+            fileSize: selectedFile.size,
+          }),
         });
 
         const signatureData = await signatureResponse.json();
         if (!signatureResponse.ok) {
           throw new Error(signatureData.error || 'Unable to prepare the file upload.');
+        }
+
+        if (!Number.isSafeInteger(signatureData.maxFileSize) || selectedFile.size > signatureData.maxFileSize) {
+          throw new Error('The selected file exceeds the server upload limit.');
         }
 
         const formData = new FormData();
