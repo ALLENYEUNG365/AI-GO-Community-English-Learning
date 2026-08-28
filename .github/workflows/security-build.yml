@@ -28,6 +28,8 @@ jobs:
 
       - name: Validate Prisma schema
         run: npx prisma validate
+        env:
+          DATABASE_URL: postgresql://ci:ci@localhost:5432/ci?schema=public
 
       - name: Build production bundle
         run: npm run build
