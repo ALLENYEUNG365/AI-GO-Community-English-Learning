@@ -13,7 +13,7 @@ export default function DailyCheckIn() {
   const [isChecking, setIsChecking] = useState(false);
   const [showReward, setShowReward] = useState(false);
 
-  // 检查今日是否已签到
+  // Check today's check-in status
   useEffect(() => {
     if (sessionStatus === 'loading') return;
 
@@ -37,7 +37,7 @@ export default function DailyCheckIn() {
         setStreak(data.streak);
       } catch (error) {
         if (!cancelled) {
-          console.error('检查签到状态失败:', error);
+          console.error('Failed to check check-in status:', error);
         }
       } finally {
         if (!cancelled) setIsStatusLoading(false);
@@ -51,7 +51,7 @@ export default function DailyCheckIn() {
     };
   }, [session, sessionStatus]);
 
-  // 执行签到
+  // Perform check-in
   const handleCheckIn = async () => {
     if (!session?.user?.email || hasCheckedIn || isStatusLoading) return;
 
@@ -64,7 +64,7 @@ export default function DailyCheckIn() {
 
       const data = await response.json();
       if (!response.ok) {
-        throw new Error(data.error || '签到失败');
+        throw new Error(data.error || 'Check-in failed');
       }
 
       setHasCheckedIn(true);
@@ -76,8 +76,8 @@ export default function DailyCheckIn() {
         setShowReward(false);
       }, 3000);
     } catch (error) {
-      console.error('签到失败:', error);
-      alert(error instanceof Error ? error.message : '签到失败，请重试');
+      console.error('Check-in failed:', error);
+      alert(error instanceof Error ? error.message : 'Check-in failed. Please try again.');
     } finally {
       setIsChecking(false);
     }
@@ -102,8 +102,8 @@ export default function DailyCheckIn() {
               <Calendar className="w-6 h-6" />
             </div>
             <div>
-              <h3 className="text-xl font-bold">每日签到</h3>
-              <p className="text-sm text-white/80">坚持打卡，获取积分奖励</p>
+              <h3 className="text-xl font-bold">Daily Check-in</h3>
+              <p className="text-sm text-white/80">Check in daily and earn points</p>
             </div>
           </div>
 
@@ -113,14 +113,14 @@ export default function DailyCheckIn() {
                 <Flame className="w-6 h-6" />
                 {streak}
               </div>
-              <p className="text-xs text-white/80">连续天数</p>
+              <p className="text-xs text-white/80">Day Streak</p>
             </div>
           )}
         </div>
 
         {isStatusLoading ? (
           <div className="w-full py-4 bg-white/20 backdrop-blur-sm rounded-xl text-center font-bold text-lg">
-            正在检查签到状态…
+            Checking check-in status…
           </div>
         ) : !hasCheckedIn ? (
           <button
@@ -131,43 +131,43 @@ export default function DailyCheckIn() {
             {isChecking ? (
               <>
                 <div className="w-5 h-5 border-2 border-amber-600 border-t-transparent rounded-full animate-spin" />
-                签到中...
+                Checking in…
               </>
             ) : (
               <>
                 <CheckCircle className="w-6 h-6" />
-                立即签到 +{nextCheckInPoints}积分
+                Check in +{nextCheckInPoints} points
               </>
             )}
           </button>
         ) : (
           <div className="py-4 bg-white/20 backdrop-blur-sm rounded-xl text-center">
             <CheckCircle className="w-12 h-12 mx-auto mb-2" />
-            <p className="font-bold text-lg">今日已签到</p>
-            <p className="text-sm text-white/80 mt-1">明天再来吧！</p>
+            <p className="font-bold text-lg">Already checked in today</p>
+            <p className="text-sm text-white/80 mt-1">Come back tomorrow!</p>
           </div>
         )}
 
         <div className="grid grid-cols-3 gap-3 mt-4">
           <div className="bg-white/10 backdrop-blur-sm rounded-lg p-3 text-center">
             <Trophy className="w-5 h-5 mx-auto mb-1" />
-            <p className="text-xs text-white/80">基础积分</p>
+            <p className="text-xs text-white/80">Base Points</p>
             <p className="font-bold">+5</p>
           </div>
           <div className="bg-white/10 backdrop-blur-sm rounded-lg p-3 text-center">
             <Flame className="w-5 h-5 mx-auto mb-1" />
-            <p className="text-xs text-white/80">连续奖励</p>
+            <p className="text-xs text-white/80">Streak Bonus</p>
             <p className="font-bold">+{currentStreakBonus}</p>
           </div>
           <div className="bg-white/10 backdrop-blur-sm rounded-lg p-3 text-center">
             <Gift className="w-5 h-5 mx-auto mb-1" />
-            <p className="text-xs text-white/80">下次总计</p>
+            <p className="text-xs text-white/80">Next Check-in</p>
             <p className="font-bold">+{nextCheckInPoints}</p>
           </div>
         </div>
 
         <p className="text-xs text-white/60 text-center mt-3">
-          连续签到最高可额外获得 +20 积分
+          Earn up to +20 bonus points for consecutive check-ins
         </p>
       </div>
 
@@ -175,8 +175,8 @@ export default function DailyCheckIn() {
         <div className="absolute inset-0 flex items-center justify-center bg-white/20 backdrop-blur-sm z-20 rounded-3xl">
           <div className="text-center animate-bounce">
             <Gift className="w-16 h-16 mx-auto mb-3" />
-            <p className="text-2xl font-bold">+{todayPoints} 积分</p>
-            <p className="text-sm">签到成功！🎉</p>
+            <p className="text-2xl font-bold">+{todayPoints} points</p>
+            <p className="text-sm">Check-in successful! 🎉</p>
           </div>
         </div>
       )}
