@@ -26,6 +26,9 @@ jobs:
       - name: Install dependencies
         run: npm ci
 
+      - name: Dependency security audit
+        run: npm audit --audit-level=high
+
       - name: Validate Prisma schema
         run: npx prisma validate
         env:
@@ -33,3 +36,9 @@ jobs:
 
       - name: Build production bundle
         run: npm run build
+        env:
+          DATABASE_URL: postgresql://ci:ci@localhost:5432/ci?schema=public
+          NEXTAUTH_SECRET: ci-only-secret
+          NEXTAUTH_URL: http://localhost:3000
+          GOOGLE_CLIENT_ID: ci-placeholder
+          GOOGLE_CLIENT_SECRET: ci-placeholder
