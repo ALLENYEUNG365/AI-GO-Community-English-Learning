@@ -9,11 +9,28 @@ const MAX_POSTS_PER_MINUTE = 10;
 const MAX_POSTS_PER_DAY = 100;
 const ALLOWED_MEDIA_TYPES = new Set(['image', 'video']);
 const ALLOWED_MEDIA_HOSTS = new Set(['res.cloudinary.com']);
+const ALLOWED_MEDIA_FOLDER = '/english-learning-circle/';
 
-function isAllowedMediaUrl(value: string): boolean {
+function isAllowedMediaUrl(value: string, mediaType: string | null): boolean {
   try {
     const url = new URL(value);
-    return url.protocol === 'https:' && ALLOWED_MEDIA_HOSTS.has(url.hostname);
+    if (url.protocol !== 'https:' || !ALLOWED_MEDIA_HOSTS.has(url.hostname)) {
+      return false;
+    }
+
+    if (!url.pathname.includes(ALLOWED_MEDIA_FOLDER)) {
+      return false;
+    }
+
+    if (mediaType === 'image' && !url.pathname.includes('/image/upload/')) {
+      return false;
+    }
+
+    if (mediaType === 'video' && !url.pathname.includes('/video/upload/')) {
+      return false;
+    }
+
+    return true;
   } catch {
     return false;
   }
@@ -59,7 +76,11 @@ export async function POST(request: Request) {
       return NextResponse.json({ error: '媒体地址不能为空' }, { status: 400 });
     }
 
-    if (mediaUrl && !isAllowedMediaUrl(mediaUrl)) {
+    if (mediaUrl && !mediaType) {
+      return NextResponse.json({ error: '媒体类型不能为空' }, { status: 400 });
+    }
+
+    if (mediaUrl && !isAllowedMediaUrl(mediaUrl, mediaType)) {
       return NextResponse.json({ error: '媒体地址不受信任' }, { status: 400 });
     }
 
