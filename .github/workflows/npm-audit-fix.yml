@@ -25,6 +25,9 @@ jobs:
       - name: Regenerate lockfile with security overrides
         run: npm install --package-lock-only --ignore-scripts
 
+      - name: Apply non-breaking audit fixes
+        run: npm audit fix
+
       - name: Install exact lockfile
         run: npm ci
 
