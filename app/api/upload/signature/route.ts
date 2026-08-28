@@ -6,11 +6,69 @@ import { authOptions } from '@/lib/auth';
 const ALLOWED_RESOURCE_TYPES = new Set(['image', 'video']);
 const CLOUDINARY_FOLDER = 'english-learning-circle';
 
+// Defense-in-depth rate limiting for the signature endpoint.
+// This is intentionally kept dependency-free. On serverless platforms the
+// limiter is per running instance, so it reduces abuse but is not a global quota.
+const RATE_LIMIT_WINDOW_MS = 60 * 1000;
+const MAX_SIGNATURES_PER_WINDOW = 10;
+const signatureRequests = new Map<string, number[]>();
+
+function getClientIp(request: Request): string {
+  const forwardedFor = request.headers.get('x-forwarded-for');
+  if (forwardedFor) {
+    return forwardedFor.split(',')[0].trim();
+  }
+
+  return request.headers.get('x-real-ip')?.trim() || 'unknown';
+}
+
+function isRateLimited(key: string): boolean {
+  const now = Date.now();
+  const recentRequests = (signatureRequests.get(key) || []).filter(
+    (timestamp) => now - timestamp < RATE_LIMIT_WINDOW_MS
+  );
+
+  if (recentRequests.length >= MAX_SIGNATURES_PER_WINDOW) {
+    signatureRequests.set(key, recentRequests);
+    return true;
+  }
+
+  recentRequests.push(now);
+  signatureRequests.set(key, recentRequests);
+
+  // Prevent an unbounded in-memory map on long-lived instances.
+  if (signatureRequests.size > 5000) {
+    for (const [entryKey, timestamps] of signatureRequests) {
+      if (timestamps.every((timestamp) => now - timestamp >= RATE_LIMIT_WINDOW_MS)) {
+        signatureRequests.delete(entryKey);
+      }
+    }
+  }
+
+  return false;
+}
+
 export async function POST(request: Request) {
   try {
     const session = await getServerSession(authOptions);
     if (!session?.user?.email) {
       return NextResponse.json({ error: 'User is not signed in' }, { status: 401 });
+    }
+
+    const clientIp = getClientIp(request);
+    const rateLimitKey = `${session.user.email.toLowerCase()}:${clientIp}`;
+
+    if (isRateLimited(rateLimitKey)) {
+      return NextResponse.json(
+        { error: 'Too many upload requests. Please try again in a minute.' },
+        {
+          status: 429,
+          headers: {
+            'Cache-Control': 'no-store',
+            'Retry-After': '60',
+          },
+        }
+      );
     }
 
     const cloudName = process.env.NEXT_PUBLIC_CLOUDINARY_CLOUD_NAME;
