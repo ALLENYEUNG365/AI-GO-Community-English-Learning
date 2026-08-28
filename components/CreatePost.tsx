@@ -1,6 +1,7 @@
 'use client';
 
 import { useState } from 'react';
+import { useSession } from 'next-auth/react';
 import { X, Image as ImageIcon, Video, Type, Send, Loader2 } from 'lucide-react';
 
 type UploadType = 'text' | 'image' | 'video';
