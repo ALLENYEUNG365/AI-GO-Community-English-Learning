@@ -32,7 +32,7 @@ export default function MePage() {
 
   return (
     <div className="min-h-screen bg-gradient-to-br from-amber-50 via-orange-50 to-amber-100 dark:from-gray-900 dark:via-gray-800 dark:to-gray-900 pb-20">
-      {/* 顶部导航 */}
+      {/* Top navigation */}
       <div className="sticky top-0 z-40 bg-white/80 dark:bg-gray-900/80 backdrop-blur-md border-b border-amber-200 dark:border-gray-700">
         <div className="container mx-auto px-4 py-3 flex items-center justify-between">
           <h1 className="text-xl font-bold text-gray-800 dark:text-white">
@@ -46,7 +46,7 @@ export default function MePage() {
       </div>
 
       <div className="container mx-auto px-4 py-6 max-w-4xl">
-        {/* 用户信息卡片 */}
+        {/* User information card */}
         <div className="bg-gradient-to-br from-amber-500 to-orange-500 rounded-3xl p-8 shadow-lg mb-6 text-white">
           <div className="flex items-center gap-6">
             {session?.user?.image ? (
@@ -76,7 +76,7 @@ export default function MePage() {
           </div>
         </div>
 
-        {/* 统计数据 */}
+        {/* Statistics */}
         <div className="grid grid-cols-3 gap-4 mb-6">
           {stats.map((stat) => {
             const IconComponent = stat.icon;
@@ -97,7 +97,7 @@ export default function MePage() {
           })}
         </div>
 
-        {/* 成就展示 */}
+        {/* Achievements */}
         <div className="bg-white dark:bg-gray-800 rounded-3xl p-6 shadow-lg mb-6">
           <h3 className="text-xl font-bold text-gray-800 dark:text-white mb-4">
             Achievements
@@ -141,7 +141,7 @@ export default function MePage() {
           </div>
         </div>
 
-        {/* 菜单选项 */}
+        {/* Menu options */}
         <div className="bg-white dark:bg-gray-800 rounded-3xl p-4 shadow-lg">
           {menuItems.map((item, index) => {
             const IconComponent = item.icon;
