@@ -16,6 +16,7 @@ const securityHeaders = [
 const nextConfig = {
   images: {
     domains: ['lh3.googleusercontent.com', 'res.cloudinary.com'],
+    formats: ['image/webp'],
   },
   async headers() {
     return [
