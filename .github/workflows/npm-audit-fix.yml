@@ -22,8 +22,11 @@ jobs:
           node-version: 24
           cache: npm
 
-      - name: Refresh non-breaking audited dependencies
-        run: npm audit fix
+      - name: Regenerate lockfile with security overrides
+        run: npm install --package-lock-only --ignore-scripts
+
+      - name: Install exact lockfile
+        run: npm ci
 
       - name: Verify dependency audit
         run: npm audit --audit-level=high
