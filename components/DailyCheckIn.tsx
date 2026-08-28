@@ -5,8 +5,9 @@ import { useSession } from 'next-auth/react';
 import { Calendar, Flame, Trophy, CheckCircle, Gift } from 'lucide-react';
 
 export default function DailyCheckIn() {
-  const { data: session } = useSession();
+  const { data: session, status: sessionStatus } = useSession();
   const [hasCheckedIn, setHasCheckedIn] = useState(false);
+  const [isStatusLoading, setIsStatusLoading] = useState(true);
   const [streak, setStreak] = useState(0);
   const [todayPoints, setTodayPoints] = useState(0);
   const [isChecking, setIsChecking] = useState(false);
@@ -14,27 +15,45 @@ export default function DailyCheckIn() {
 
   // 检查今日是否已签到
   useEffect(() => {
-    if (!session?.user?.email) return;
+    if (sessionStatus === 'loading') return;
+
+    if (!session?.user?.email) {
+      setIsStatusLoading(false);
+      return;
+    }
+
+    let cancelled = false;
 
     const checkTodayStatus = async () => {
+      setIsStatusLoading(true);
       try {
-        const response = await fetch('/api/checkin');
-        if (response.ok) {
-          const data = await response.json();
-          setHasCheckedIn(data.hasCheckedIn);
-          setStreak(data.streak);
-        }
+        const response = await fetch('/api/checkin', { cache: 'no-store' });
+        if (!response.ok) return;
+
+        const data = await response.json();
+        if (cancelled) return;
+
+        setHasCheckedIn(data.hasCheckedIn);
+        setStreak(data.streak);
       } catch (error) {
-        console.error('检查签到状态失败:', error);
+        if (!cancelled) {
+          console.error('检查签到状态失败:', error);
+        }
+      } finally {
+        if (!cancelled) setIsStatusLoading(false);
       }
     };
 
     checkTodayStatus();
-  }, [session]);
+
+    return () => {
+      cancelled = true;
+    };
+  }, [session, sessionStatus]);
 
   // 执行签到
   const handleCheckIn = async () => {
-    if (!session?.user?.email || hasCheckedIn) return;
+    if (!session?.user?.email || hasCheckedIn || isStatusLoading) return;
 
     setIsChecking(true);
 
@@ -99,7 +118,11 @@ export default function DailyCheckIn() {
           )}
         </div>
 
-        {!hasCheckedIn ? (
+        {isStatusLoading ? (
+          <div className="w-full py-4 bg-white/20 backdrop-blur-sm rounded-xl text-center font-bold text-lg">
+            正在检查签到状态…
+          </div>
+        ) : !hasCheckedIn ? (
           <button
             onClick={handleCheckIn}
             disabled={isChecking}
