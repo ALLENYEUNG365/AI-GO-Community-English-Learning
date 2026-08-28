@@ -25,7 +25,7 @@ export default function CreatePost({ onPostCreated }: CreatePostProps) {
 
     const maxSize = postType === 'video' ? 100 * 1024 * 1024 : 10 * 1024 * 1024;
     if (file.size > maxSize) {
-      alert(`文件太大！${postType === 'video' ? '视频' : '图片'}最大 ${maxSize / 1024 / 1024}MB`);
+      alert(`File too large! ${postType === 'video' ? 'Videos' : 'Images'} must be no larger than ${maxSize / 1024 / 1024}MB.`);
       return;
     }
 
@@ -40,12 +40,12 @@ export default function CreatePost({ onPostCreated }: CreatePostProps) {
 
   const handleSubmit = async () => {
     if (!session) {
-      alert('请先登录！');
+      alert('Please sign in first.');
       return;
     }
 
     if (!content.trim() && !selectedFile) {
-      alert('请输入内容或上传文件！');
+      alert('Please enter some content or upload a file.');
       return;
     }
 
@@ -64,7 +64,7 @@ export default function CreatePost({ onPostCreated }: CreatePostProps) {
 
         const signatureData = await signatureResponse.json();
         if (!signatureResponse.ok) {
-          throw new Error(signatureData.error || '无法准备文件上传');
+          throw new Error(signatureData.error || 'Unable to prepare the file upload.');
         }
 
         const formData = new FormData();
@@ -81,12 +81,12 @@ export default function CreatePost({ onPostCreated }: CreatePostProps) {
         });
 
         if (!uploadResponse.ok) {
-          throw new Error('文件上传失败');
+          throw new Error('File upload failed.');
         }
 
         const uploadData = await uploadResponse.json();
         if (typeof uploadData.secure_url !== 'string') {
-          throw new Error('上传服务未返回有效文件地址');
+          throw new Error('The upload service did not return a valid file URL.');
         }
         mediaUrl = uploadData.secure_url;
       }
@@ -105,21 +105,21 @@ export default function CreatePost({ onPostCreated }: CreatePostProps) {
 
       const data = await response.json();
       if (!response.ok) {
-        throw new Error(data.error || '发布失败');
+        throw new Error(data.error || 'Failed to publish the post.');
       }
 
       setContent('');
       setSelectedFile(null);
       setPreviewUrl('');
       setIsOpen(false);
-      alert('发布成功！+10积分 🎉');
+      alert('Post published successfully! +10 points 🎉');
 
       if (onPostCreated) {
         onPostCreated();
       }
     } catch (error) {
-      console.error('发布失败:', error);
-      alert(error instanceof Error ? error.message : '发布失败，请重试');
+      console.error('Failed to publish post:', error);
+      alert(error instanceof Error ? error.message : 'Failed to publish the post. Please try again.');
     } finally {
       setIsUploading(false);
     }
@@ -129,13 +129,13 @@ export default function CreatePost({ onPostCreated }: CreatePostProps) {
     return (
       <div className="text-center py-8">
         <p className="text-gray-500 dark:text-gray-400 mb-4">
-          登录后即可发布内容
+          Sign in to publish content
         </p>
         <a
           href="/api/auth/signin"
           className="px-6 py-3 bg-gradient-to-r from-amber-500 to-orange-500 text-white rounded-full font-semibold hover:shadow-lg transition-all"
         >
-          立即登录
+          Sign In
         </a>
       </div>
     );
@@ -150,7 +150,7 @@ export default function CreatePost({ onPostCreated }: CreatePostProps) {
         >
           <div className="flex items-center justify-center gap-2 text-gray-600 dark:text-gray-300">
             <Type className="w-5 h-5" />
-            <span className="font-medium">分享你的学习动态...</span>
+            <span className="font-medium">Share your learning update...</span>
           </div>
         </button>
       )}
@@ -159,7 +159,7 @@ export default function CreatePost({ onPostCreated }: CreatePostProps) {
         <div className="bg-white dark:bg-gray-800 rounded-3xl shadow-xl p-6 mb-6">
           <div className="flex items-center justify-between mb-4">
             <h3 className="text-xl font-bold text-gray-800 dark:text-white">
-              创建帖子
+              Create Post
             </h3>
             <button
               onClick={() => setIsOpen(false)}
@@ -179,7 +179,7 @@ export default function CreatePost({ onPostCreated }: CreatePostProps) {
               }`}
             >
               <Type className="w-5 h-5 mx-auto mb-1" />
-              文字
+              Text
             </button>
             <button
               onClick={() => setPostType('image')}
@@ -190,7 +190,7 @@ export default function CreatePost({ onPostCreated }: CreatePostProps) {
               }`}
             >
               <ImageIcon className="w-5 h-5 mx-auto mb-1" />
-              图片
+              Image
             </button>
             <button
               onClick={() => setPostType('video')}
@@ -201,14 +201,14 @@ export default function CreatePost({ onPostCreated }: CreatePostProps) {
               }`}
             >
               <Video className="w-5 h-5 mx-auto mb-1" />
-              视频
+              Video
             </button>
           </div>
 
           <textarea
             value={content}
             onChange={(e) => setContent(e.target.value)}
-            placeholder="分享你的学习心得..."
+            placeholder="Share your learning experience..."
             className="w-full p-4 border border-gray-200 dark:border-gray-700 rounded-xl bg-gray-50 dark:bg-gray-700 text-gray-800 dark:text-white focus:outline-none focus:ring-2 focus:ring-amber-500 mb-4 resize-none"
             rows={4}
             maxLength={5000}
@@ -231,10 +231,10 @@ export default function CreatePost({ onPostCreated }: CreatePostProps) {
                       <Video className="w-12 h-12 mx-auto mb-2 text-gray-400" />
                     )}
                     <p className="text-gray-600 dark:text-gray-300">
-                      点击上传{postType === 'image' ? '图片' : '视频'}
+                      Click to upload {postType === 'image' ? 'an image' : 'a video'}
                     </p>
                     <p className="text-xs text-gray-400 mt-1">
-                      {postType === 'image' ? '支持 JPG, PNG, GIF (最大10MB)' : '支持 MP4, MOV (最大100MB)'}
+                      {postType === 'image' ? 'JPG, PNG, GIF (max 10MB)' : 'MP4, MOV (max 100MB)'}
                     </p>
                   </div>
                 </label>
@@ -259,6 +259,7 @@ export default function CreatePost({ onPostCreated }: CreatePostProps) {
                       setPreviewUrl('');
                     }}
                     className="absolute top-2 right-2 p-2 bg-red-500 text-white rounded-full hover:bg-red-600 transition-colors"
+                    aria-label="Remove selected file"
                   >
                     <X className="w-4 h-4" />
                   </button>
@@ -275,18 +276,18 @@ export default function CreatePost({ onPostCreated }: CreatePostProps) {
             {isUploading ? (
               <>
                 <Loader2 className="w-5 h-5 animate-spin" />
-                上传中...
+                Uploading...
               </>
             ) : (
               <>
                 <Send className="w-5 h-5" />
-                发布 (+10积分)
+                Publish (+10 points)
               </>
             )}
           </button>
 
           <p className="text-xs text-gray-500 dark:text-gray-400 text-center mt-3">
-            发布内容即可获得 10 积分奖励
+            Earn 10 points for publishing content
           </p>
         </div>
       )}
