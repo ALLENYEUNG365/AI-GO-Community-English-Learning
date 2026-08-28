@@ -27,7 +27,7 @@ export async function POST() {
     const email = session?.user?.email;
 
     if (!email) {
-      return NextResponse.json({ error: '用户未登录' }, { status: 401 });
+      return NextResponse.json({ error: 'User is not signed in' }, { status: 401 });
     }
 
     const result = await prisma.$transaction(
@@ -61,7 +61,7 @@ export async function POST() {
         });
 
         if (existingCheckIn) {
-          return { error: '今日已签到' as const };
+          return { error: 'Already checked in today' as const };
         }
 
         const yesterdayCheckIn = await tx.checkIn.findUnique({
@@ -112,11 +112,11 @@ export async function POST() {
     });
   } catch (error) {
     if (error instanceof Prisma.PrismaClientKnownRequestError && error.code === 'P2002') {
-      return NextResponse.json({ error: '今日已签到' }, { status: 400 });
+      return NextResponse.json({ error: 'Already checked in today' }, { status: 400 });
     }
 
-    console.error('签到失败:', error);
-    return NextResponse.json({ error: '签到失败，请稍后重试' }, { status: 500 });
+    console.error('Check-in failed:', error);
+    return NextResponse.json({ error: 'Check-in failed. Please try again later.' }, { status: 500 });
   }
 }
 
@@ -126,7 +126,7 @@ export async function GET() {
     const email = session?.user?.email;
 
     if (!email) {
-      return NextResponse.json({ error: '用户未登录' }, { status: 401 });
+      return NextResponse.json({ error: 'User is not signed in' }, { status: 401 });
     }
 
     const user = await prisma.user.findUnique({
@@ -160,7 +160,7 @@ export async function GET() {
       headers: { 'Cache-Control': 'no-store' },
     });
   } catch (error) {
-    console.error('获取签到状态失败:', error);
-    return NextResponse.json({ error: '获取签到状态失败' }, { status: 500 });
+    console.error('Failed to get check-in status:', error);
+    return NextResponse.json({ error: 'Failed to get check-in status' }, { status: 500 });
   }
 }
