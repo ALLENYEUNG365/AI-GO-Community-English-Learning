@@ -29,6 +29,12 @@ All notable project updates are documented here.
 ### Production verification
 - Re-verified the production deployment after the security and repository changes.
 - Confirmed the current deployed application remains functional, including Google sign-in and daily check-in behavior.
+- After documentation was merged through PR #14, re-ran the main-branch security validation: CodeQL and Security Build both passed, and the Vercel deployment completed successfully.
+
+### Documentation
+- Added this changelog and expanded the README with Security & Engineering Controls and an explicit distinction between current prototype functionality and the future roadmap.
+- Corrected the README framework version to the current project version (Next.js 15.5.24).
+- PR #14 (`docs: document security hardening and project updates`) was merged into `main` after the required checks passed.
 
 ### Engineering decision
 - The Prisma 7 Dependabot upgrade that failed during `prisma generate` was not merged into `main`.
