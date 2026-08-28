@@ -4,6 +4,10 @@ import { getServerSession } from 'next-auth';
 import { authOptions } from '@/lib/auth';
 
 const ALLOWED_RESOURCE_TYPES = new Set(['image', 'video']);
+const ALLOWED_FORMATS = {
+  image: 'jpg,jpeg,png,gif,webp',
+  video: 'mp4,mov,webm',
+} as const;
 const CLOUDINARY_FOLDER = 'english-learning-circle';
 
 // Defense-in-depth rate limiting for the signature endpoint.
@@ -87,8 +91,9 @@ export async function POST(request: Request) {
       return NextResponse.json({ error: 'Unsupported upload type' }, { status: 400 });
     }
 
+    const allowedFormats = ALLOWED_FORMATS[resourceType as keyof typeof ALLOWED_FORMATS];
     const timestamp = Math.floor(Date.now() / 1000);
-    const paramsToSign = `folder=${CLOUDINARY_FOLDER}&timestamp=${timestamp}`;
+    const paramsToSign = `allowed_formats=${allowedFormats}&folder=${CLOUDINARY_FOLDER}&timestamp=${timestamp}`;
     const signature = createHash('sha1')
       .update(`${paramsToSign}${apiSecret}`)
       .digest('hex');
@@ -99,6 +104,7 @@ export async function POST(request: Request) {
       timestamp,
       signature,
       folder: CLOUDINARY_FOLDER,
+      allowedFormats,
     }, {
       headers: { 'Cache-Control': 'no-store' },
     });
