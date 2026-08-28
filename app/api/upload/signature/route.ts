@@ -10,7 +10,7 @@ export async function POST(request: Request) {
   try {
     const session = await getServerSession(authOptions);
     if (!session?.user?.email) {
-      return NextResponse.json({ error: '用户未登录' }, { status: 401 });
+      return NextResponse.json({ error: 'User is not signed in' }, { status: 401 });
     }
 
     const cloudName = process.env.NEXT_PUBLIC_CLOUDINARY_CLOUD_NAME;
@@ -19,14 +19,14 @@ export async function POST(request: Request) {
 
     if (!cloudName || !apiKey || !apiSecret) {
       console.error('Cloudinary server configuration is incomplete');
-      return NextResponse.json({ error: '上传服务配置不完整' }, { status: 500 });
+      return NextResponse.json({ error: 'Upload service configuration is incomplete' }, { status: 500 });
     }
 
     const body = await request.json().catch(() => ({}));
     const resourceType = typeof body.resourceType === 'string' ? body.resourceType : '';
 
     if (!ALLOWED_RESOURCE_TYPES.has(resourceType)) {
-      return NextResponse.json({ error: '不支持的上传类型' }, { status: 400 });
+      return NextResponse.json({ error: 'Unsupported upload type' }, { status: 400 });
     }
 
     const timestamp = Math.floor(Date.now() / 1000);
@@ -45,7 +45,7 @@ export async function POST(request: Request) {
       headers: { 'Cache-Control': 'no-store' },
     });
   } catch (error) {
-    console.error('生成上传签名失败:', error);
-    return NextResponse.json({ error: '生成上传签名失败' }, { status: 500 });
+    console.error('Failed to generate upload signature:', error);
+    return NextResponse.json({ error: 'Failed to generate upload signature' }, { status: 500 });
   }
 }
