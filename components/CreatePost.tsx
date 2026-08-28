@@ -2,7 +2,6 @@
 
 import { useState } from 'react';
 import { useSession } from 'next-auth/react';
-import Image from 'next/image';
 import { X, Image as ImageIcon, Video, Type, Send, Loader2 } from 'lucide-react';
 
 type UploadType = 'text' | 'image' | 'video';
@@ -20,21 +19,18 @@ export default function CreatePost({ onPostCreated }: CreatePostProps) {
   const [previewUrl, setPreviewUrl] = useState<string>('');
   const [isUploading, setIsUploading] = useState(false);
 
-  // 处理文件选择
   const handleFileSelect = (e: React.ChangeEvent<HTMLInputElement>) => {
     const file = e.target.files?.[0];
     if (!file) return;
 
-    // 验证文件大小
-    const maxSize = postType === 'video' ? 100 * 1024 * 1024 : 10 * 1024 * 1024; // 视频100MB，图片10MB
+    const maxSize = postType === 'video' ? 100 * 1024 * 1024 : 10 * 1024 * 1024;
     if (file.size > maxSize) {
       alert(`文件太大！${postType === 'video' ? '视频' : '图片'}最大 ${maxSize / 1024 / 1024}MB`);
       return;
     }
 
     setSelectedFile(file);
-    
-    // 创建预览
+
     const reader = new FileReader();
     reader.onloadend = () => {
       setPreviewUrl(reader.result as string);
@@ -42,7 +38,6 @@ export default function CreatePost({ onPostCreated }: CreatePostProps) {
     reader.readAsDataURL(file);
   };
 
-  // 提交帖子
   const handleSubmit = async () => {
     if (!session) {
       alert('请先登录！');
@@ -58,17 +53,16 @@ export default function CreatePost({ onPostCreated }: CreatePostProps) {
 
     try {
       let mediaUrl = '';
-      
-      // 如果有文件，先上传到 Cloudinary
+
       if (selectedFile) {
         const formData = new FormData();
         formData.append('file', selectedFile);
         formData.append('upload_preset', process.env.NEXT_PUBLIC_CLOUDINARY_UPLOAD_PRESET!);
-        
+
         const cloudinaryUrl = postType === 'video'
           ? `https://api.cloudinary.com/v1_1/${process.env.NEXT_PUBLIC_CLOUDINARY_CLOUD_NAME}/video/upload`
           : `https://api.cloudinary.com/v1_1/${process.env.NEXT_PUBLIC_CLOUDINARY_CLOUD_NAME}/image/upload`;
-        
+
         const uploadResponse = await fetch(cloudinaryUrl, {
           method: 'POST',
           body: formData,
@@ -82,7 +76,6 @@ export default function CreatePost({ onPostCreated }: CreatePostProps) {
         mediaUrl = uploadData.secure_url;
       }
 
-      // 保存帖子到数据库
       const response = await fetch('/api/posts', {
         method: 'POST',
         headers: {
@@ -92,27 +85,26 @@ export default function CreatePost({ onPostCreated }: CreatePostProps) {
           content: content.trim(),
           mediaUrl,
           mediaType: selectedFile ? postType : null,
-          userId: session.user?.email, // 使用邮箱作为用户标识
         }),
       });
 
+      const data = await response.json();
       if (!response.ok) {
-        throw new Error('发布失败');
+        throw new Error(data.error || '发布失败');
       }
 
-      // 成功：重置表单
       setContent('');
       setSelectedFile(null);
       setPreviewUrl('');
       setIsOpen(false);
       alert('发布成功！+10积分 🎉');
-      
+
       if (onPostCreated) {
         onPostCreated();
       }
     } catch (error) {
       console.error('发布失败:', error);
-      alert('发布失败，请重试');
+      alert(error instanceof Error ? error.message : '发布失败，请重试');
     } finally {
       setIsUploading(false);
     }
@@ -136,7 +128,6 @@ export default function CreatePost({ onPostCreated }: CreatePostProps) {
 
   return (
     <>
-      {/* 触发按钮 */}
       {!isOpen && (
         <button
           onClick={() => setIsOpen(true)}
@@ -149,10 +140,8 @@ export default function CreatePost({ onPostCreated }: CreatePostProps) {
         </button>
       )}
 
-      {/* 发帖表单 */}
       {isOpen && (
         <div className="bg-white dark:bg-gray-800 rounded-3xl shadow-xl p-6 mb-6">
-          {/* 头部 */}
           <div className="flex items-center justify-between mb-4">
             <h3 className="text-xl font-bold text-gray-800 dark:text-white">
               创建帖子
@@ -165,7 +154,6 @@ export default function CreatePost({ onPostCreated }: CreatePostProps) {
             </button>
           </div>
 
-          {/* 类型选择 */}
           <div className="flex gap-2 mb-4">
             <button
               onClick={() => setPostType('text')}
@@ -202,16 +190,15 @@ export default function CreatePost({ onPostCreated }: CreatePostProps) {
             </button>
           </div>
 
-          {/* 文本输入 */}
           <textarea
             value={content}
             onChange={(e) => setContent(e.target.value)}
             placeholder="分享你的学习心得..."
             className="w-full p-4 border border-gray-200 dark:border-gray-700 rounded-xl bg-gray-50 dark:bg-gray-700 text-gray-800 dark:text-white focus:outline-none focus:ring-2 focus:ring-amber-500 mb-4 resize-none"
             rows={4}
+            maxLength={5000}
           />
 
-          {/* 文件上传 */}
           {(postType === 'image' || postType === 'video') && (
             <div className="mb-4">
               {!selectedFile ? (
@@ -265,7 +252,6 @@ export default function CreatePost({ onPostCreated }: CreatePostProps) {
             </div>
           )}
 
-          {/* 提交按钮 */}
           <button
             onClick={handleSubmit}
             disabled={isUploading || (!content.trim() && !selectedFile)}
