@@ -53,7 +53,7 @@ export default function LearnPage() {
 
   return (
     <div className="min-h-screen bg-gradient-to-br from-amber-50 via-orange-50 to-amber-100 dark:from-gray-900 dark:via-gray-800 dark:to-gray-900 pb-20">
-      {/* 顶部导航 */}
+      {/* Top navigation */}
       <div className="sticky top-0 z-40 bg-white/80 dark:bg-gray-900/80 backdrop-blur-md border-b border-amber-200 dark:border-gray-700">
         <div className="container mx-auto px-4 py-3 flex items-center justify-between">
           <div className="flex items-center gap-3">
@@ -70,7 +70,7 @@ export default function LearnPage() {
       </div>
 
       <div className="container mx-auto px-4 py-6 max-w-6xl">
-        {/* 学习进度概览 */}
+        {/* Learning progress overview */}
         <div className="bg-white dark:bg-gray-800 rounded-3xl p-6 shadow-lg mb-6">
           <h2 className="text-2xl font-bold text-gray-800 dark:text-white mb-4">
             Your Learning Journey
@@ -92,7 +92,7 @@ export default function LearnPage() {
           </div>
         </div>
 
-        {/* 学习模块 */}
+        {/* Learning modules */}
         <h2 className="text-2xl font-bold text-gray-800 dark:text-white mb-4">
           Learning Modules
         </h2>
@@ -136,7 +136,7 @@ export default function LearnPage() {
           })}
         </div>
 
-        {/* 最近学习 */}
+        {/* Continue learning */}
         <h2 className="text-2xl font-bold text-gray-800 dark:text-white mb-4">
           Continue Learning
         </h2>
