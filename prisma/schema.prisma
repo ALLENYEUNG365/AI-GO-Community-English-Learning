@@ -41,12 +41,14 @@ model Post {
 }
 
 model CheckIn {
-  id        String   @id @default(cuid())
-  userId    String
-  points    Int      // 本次签到获得的积分
-  createdAt DateTime @default(now())
+  id          String   @id @default(cuid())
+  userId      String
+  points      Int      // 本次签到获得的积分
+  checkInDate DateTime @db.Date @map("check_in_date")
+  createdAt   DateTime @default(now())
 
   user User @relation(fields: [userId], references: [id], onDelete: Cascade)
 
+  @@unique([userId, checkInDate])
   @@map("checkins")
 }
