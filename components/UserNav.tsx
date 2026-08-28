@@ -29,9 +29,9 @@ export default function UserNav() {
 
   return (
     <div className="flex items-center gap-3">
-      {/* 用户信息卡片 */}
+      {/* User information card */}
       <div className="flex items-center gap-3 px-4 py-2 bg-white dark:bg-gray-800 rounded-full shadow-md border border-amber-200 dark:border-gray-700">
-        {/* 头像 */}
+        {/* Avatar */}
         {session.user.image && (
           <Image
             src={session.user.image}
@@ -42,7 +42,7 @@ export default function UserNav() {
           />
         )}
         
-        {/* 用户信息 */}
+        {/* User information */}
         <div className="hidden sm:block">
           <p className="font-semibold text-sm text-gray-800 dark:text-white">
             {session.user.name}
@@ -53,7 +53,7 @@ export default function UserNav() {
         </div>
       </div>
 
-      {/* 登出按钮 */}
+      {/* Sign-out button */}
       <button
         onClick={() => signOut({ callbackUrl: '/' })}
         className="p-2 bg-red-500 hover:bg-red-600 text-white rounded-full transition-colors"
