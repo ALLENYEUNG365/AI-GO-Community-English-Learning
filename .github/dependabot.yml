@@ -4,7 +4,7 @@ updates:
     directory: "/"
     schedule:
       interval: weekly
-    open-pull-requests-limit: 5
+    open-pull-requests-limit: 0
     versioning-strategy: increase
     groups:
       prisma-orm:
@@ -17,3 +17,6 @@ updates:
         patterns:
           - "prisma"
           - "@prisma/client"
+    # Competition/production baseline: disable automatic version-update PRs.
+    # Security updates remain enabled and can still be proposed, including major security fixes.
+    # Major upgrades should be evaluated in a dedicated migration branch with full regression testing.
