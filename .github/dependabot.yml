@@ -4,7 +4,7 @@ updates:
     directory: "/"
     schedule:
       interval: weekly
-    open-pull-requests-limit: 5
+    open-pull-requests-limit: 0
     versioning-strategy: increase
     groups:
       prisma-orm:
@@ -17,22 +17,6 @@ updates:
         patterns:
           - "prisma"
           - "@prisma/client"
-    # Keep the competition/production baseline stable.
-    # Major upgrades require a dedicated migration and full regression testing.
-    ignore:
-      - dependency-name: "next"
-        update-types: ["version-update:semver-major"]
-      - dependency-name: "react"
-        update-types: ["version-update:semver-major"]
-      - dependency-name: "react-dom"
-        update-types: ["version-update:semver-major"]
-      - dependency-name: "@types/react"
-        update-types: ["version-update:semver-major"]
-      - dependency-name: "@types/react-dom"
-        update-types: ["version-update:semver-major"]
-      - dependency-name: "prisma"
-        update-types: ["version-update:semver-major"]
-      - dependency-name: "@prisma/client"
-        update-types: ["version-update:semver-major"]
-      - dependency-name: "typescript"
-        update-types: ["version-update:semver-major"]
+    # Competition/production baseline: disable automatic version-update PRs.
+    # Security updates remain enabled and can still be proposed, including major security fixes.
+    # Major upgrades should be evaluated in a dedicated migration branch with full regression testing.
