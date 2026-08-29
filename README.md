@@ -20,7 +20,19 @@ Open the deployed prototype in a modern browser to explore the current experienc
 
 > The live prototype is the current deployed product experience; this repository is the source and documentation hub.
 
----
+## 👋 About This Project
+
+AI GO Community English Learning is an **educational technology prototype** that combines English practice with community participation, habit-building, and AI-assisted learning experiences. The project is intended to make English practice feel less like a sequence of isolated exercises and more like a continuous learning journey.
+
+The platform brings together several connected experiences:
+
+- **Community:** learners can share learning moments and interact around English-related topics.
+- **Learning:** structured learning resources provide a foundation for continued practice.
+- **Motivation:** daily check-ins, points, rewards, streaks, and achievements support consistent participation.
+- **AI assistance:** the current prototype provides an AI-oriented learning experience, with more advanced tutoring capabilities planned for future iterations.
+- **Practical communication:** the product is designed around English use in academic, professional, vocational, and everyday contexts.
+
+The project is especially interested in the question: **How can AI and community design work together to make language learning more accessible, social, personalized, and sustainable?**
 
 ## 🎯 The Problem
 
@@ -43,8 +55,6 @@ RETURN TO LEARN
 
 The goal is not simply to add AI to a language app, but to create a **repeatable learning loop** that makes English practice more accessible, social, and sustainable.
 
----
-
 ## 🧠 Educational Logic
 
 **Access → Practice → Feedback → Social Reinforcement → Continued Learning**
@@ -52,8 +62,6 @@ The goal is not simply to add AI to a language app, but to create a **repeatable
 ![Educational Logic](docs/education-logic.svg)
 
 The model connects easy access, habit-building, structured learning, AI assistance, community reinforcement, and continued progress.
-
----
 
 ## 🏗️ Product / Technology Architecture
 <img width="1536" height="1024" alt="image" src="https://github.com/user-attachments/assets/ef71da48-3a57-440b-abe5-06e20f43d5d7" />
@@ -69,8 +77,6 @@ The documented stack includes:
 - **File storage:** Cloudinary
 - **Theme:** next-themes
 
----
-
 ## 🧩 Core Features
 
 - ✅ Google OAuth Login
@@ -83,8 +89,6 @@ The documented stack includes:
 - ✅ Responsive Design
 
 Advanced AI functions are presented separately as a roadmap rather than as completed features.
-
----
 
 ## 🔐 Security & Engineering Controls
 
@@ -132,8 +136,6 @@ For the current production baseline, the project intentionally retains its stabl
 
 See [CHANGELOG.md](CHANGELOG.md) for the detailed 2026-08-28 security-hardening record and [SECURITY.md](SECURITY.md) for vulnerability reporting guidance.
 
----
-
 ## 🖼️ Product Preview
 
 ### Product concept / learning space
@@ -160,15 +162,11 @@ See [CHANGELOG.md](CHANGELOG.md) for the detailed 2026-08-28 security-hardening 
 
 <img width="1708" height="921" alt="image" src="https://github.com/user-attachments/assets/ee276618-c854-4064-bf2c-127b8c4281b2" />
 
----
-
 ## 🎬 Demo Video
 
 [▶ Watch the AI GO Community English Learning demo](https://drive.google.com/file/d/1RdD4iRmQR85VftlRqbCIK5RDnHvn5iI4/view)
 
 Keep the Google Drive permission set to **Anyone with the link can view** so reviewers can access the video without signing in.
-
----
 
 ## 📚 Educational Use Cases
 
@@ -184,8 +182,6 @@ Provide a community-oriented space for learning resources, participation, and fu
 ### Lifelong Learning
 Encourage consistent, low-friction practice through habit-building and community reinforcement.
 
----
-
 ## 🤖 Responsible AI Roadmap
 
 Future exploration includes:
@@ -199,21 +195,15 @@ Future exploration includes:
 - Learning Analytics and Progress Tracking
 - Multilingual Learning Support
 
----
-
 ## 🌱 Vision
 
 > **Make English learning more accessible, social, personalized, and sustainable through responsible AI and community-driven learning.**
-
----
 
 ## 👤 Project Story
 
 AI GO Community English Learning grows from the **English Learning Circle** concept: learning English is not only about completing lessons, but also about building confidence, practicing consistently, exchanging ideas, and learning with other people.
 
 🔗 [English Learning Circle: AI-Powered Community English Learning for Vocational Education](https://www.linkedin.com/pulse/english-learning-circle-ai-powered-community-vocational-xinlin-yang-96imc/)
-
----
 
 ## 💻 Quick Start
 
@@ -223,8 +213,6 @@ npm run dev
 ```
 
 Then open `http://localhost:3000`.
-
----
 
 ## 📁 Repository Structure
 
@@ -243,8 +231,6 @@ AI-GO-Community-English-Learning/
 ├── SECURITY.md
 └── package.json
 ```
-
----
 
 ## 📄 License
 
