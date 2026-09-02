@@ -12,6 +12,32 @@
 
 The project grows from the **English Learning Circle** concept and is designed for vocational education students, international learners, English teachers, and lifelong learners.
 
+## 🎮 Learn Through a Learning Journey
+
+Instead of presenting the product as a collection of features, the experience is designed as a repeatable learner journey:
+
+```text
+DISCOVER
+   ↓
+SET A GOAL
+   ↓
+PRACTICE
+   ↓
+GET FEEDBACK
+   ↓
+SHARE & REFLECT
+   ↓
+BUILD MOTIVATION
+   ↓
+RETURN TO LEARN
+```
+
+The product intentionally connects individual learning with social reinforcement. A learner can enter through a resource, a daily check-in, a conversation, or a community post, then move toward another learning action rather than reaching a hard stopping point.
+
+![Learning Journey](docs/learning-loop.svg)
+
+This approach is inspired by a simple educational design principle: **turn learning actions into a journey, not a sequence of isolated features.**
+
 ## 🚀 Try the Live Prototype
 
 **Live website:** [english-learning-circle.vercel.app](https://english-learning-circle.vercel.app/)
@@ -39,7 +65,6 @@ EARN PROGRESS / REINFORCEMENT
   ↓
 RETURN TO LEARN
 ```
-<img width="1536" height="1024" alt="image" src="https://github.com/user-attachments/assets/8916c7eb-9dea-40f0-a3a9-6c881ec2516a" />
 
 The goal is not simply to add AI to a language app, but to create a **repeatable learning loop** that makes English practice more accessible, social, and sustainable.
 
@@ -52,6 +77,17 @@ The goal is not simply to add AI to a language app, but to create a **repeatable
 ![Educational Logic](docs/education-logic.svg)
 
 The model connects easy access, habit-building, structured learning, AI assistance, community reinforcement, and continued progress.
+
+### A learner-centred product loop
+
+**1. Access** — make the first learning action simple.  
+**2. Build Habit** — use lightweight routines such as daily check-in and streaks.  
+**3. Practice** — provide places to read, watch, write, chat, and interact.  
+**4. AI Feedback** — use AI as an assistant for future correction, guidance, and suggestions.  
+**5. Community** — turn social interaction into encouragement and reinforcement.  
+**6. Motivation** — connect progress, points, and rewards back to the next learning action.
+
+This narrative structure is designed to make the product easier for a learner—or a competition judge—to understand in a few moments.
 
 ---
 
@@ -130,7 +166,7 @@ Prisma dependencies are grouped in Dependabot so `prisma` and `@prisma/client` a
 
 For the current production baseline, the project intentionally retains its stable Prisma 5.x version rather than forcing a Prisma 7 major upgrade that previously failed during `prisma generate`.
 
-See [CHANGELOG.md](CHANGELOG.md) for the detailed 2026-08-28 security-hardening record and [SECURITY.md](SECURITY.md) for vulnerability reporting guidance.
+See [CHANGELOG.md](CHANGELOG.md) for the detailed security-hardening record and [SECURITY.md](SECURITY.md) for vulnerability reporting guidance.
 
 ---
 
@@ -210,6 +246,8 @@ Future exploration includes:
 ## 👤 Project Story
 
 AI GO Community English Learning grows from the **English Learning Circle** concept: learning English is not only about completing lessons, but also about building confidence, practicing consistently, exchanging ideas, and learning with other people.
+
+The product is deliberately framed as a **learning journey**: each interaction should make the next useful learning action easier to discover.
 
 🔗 [English Learning Circle: AI-Powered Community English Learning for Vocational Education](https://www.linkedin.com/pulse/english-learning-circle-ai-powered-community-vocational-xinlin-yang-96imc/)
 
